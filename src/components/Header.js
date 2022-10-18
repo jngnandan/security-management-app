@@ -13,53 +13,58 @@ import Finance from '../assets/icons/finance.svg'
 import Reports from '../assets/icons/reports.svg'
 import Permissions from '../assets/icons/permissions.svg'
 import Settings from '../assets/icons/settings.svg'
+import Superadmin from '../assets/icons/superadmin.svg'
 
 export default function Header() {
   return (
-    <div className='grid grid-cols-11 gap-3'>
+    <div className='grid lg:grid-cols-12 grid-cols-6 gap-3 py-3 bg-blue-200'>
       <Link className='flex flex-col items-center' to='/'>
-        <img className='h-10' src={Dashboard} alt='logo' />
-        <p className='text-sm'>Dashboard</p>
+        <img className='h-9' src={Dashboard} alt='logo' />
+        <p className='text-sm m-1'>Dashboard</p>
       </Link>
       <Link className='flex flex-col items-center' to='/workforce'>
-        <img className='h-10' src={Workforce} alt='logo' />
-        <p className='text-sm'>Workforce</p>
+        <img className='h-9' src={Workforce} alt='logo' />
+        <p className='text-sm m-1'>Workforce</p>
       </Link>
       <Link className='flex flex-col items-center' to='/clients'>
-        <img className='h-10' src={Clients} alt='logo' />
-        <p className='text-sm'>Clients</p>
+        <img className='h-9' src={Clients} alt='logo' />
+        <p className='text-sm m-1'>Clients</p>
       </Link>
       <Link className='flex flex-col items-center' to='/sites'>
-        <img className='h-10' src={Sites} alt='logo' />
-        <p className='text-sm'>Sites</p>
+        <img className='h-9' src={Sites} alt='logo' />
+        <p className='text-sm m-1'>Sites</p>
       </Link>
       <Link className='flex flex-col items-center' to='/roster'>
-        <img className='h-10' src={Roster} alt='logo' />
-        <p className='text-sm'>Roster</p>
+        <img className='h-9' src={Roster} alt='logo' />
+        <p className='text-sm m-1'>Roster</p>
       </Link>
       <Link className='flex flex-col items-center' to='/calls'>
-        <img className='h-10' src={Calls} alt='logo' />
-        <p className='text-sm'>Calls</p>
+        <img className='h-9' src={Calls} alt='logo' />
+        <p className='text-sm m-1'>Calls</p>
       </Link>
       <Link className='flex flex-col items-center' to='/events'>
-        <img className='h-10' src={Events} alt='logo' />
-        <p className='text-sm'>Events</p>
+        <img className='h-9' src={Events} alt='logo' />
+        <p className='text-sm m-1'>Events</p>
       </Link>
       <Link className='flex flex-col items-center' to='/finance'>
-        <img className='h-10' src={Finance} alt='logo' />
-        <p className='text-sm'>Finance</p>
+        <img className='h-9' src={Finance} alt='logo' />
+        <p className='text-sm m-1'>Finance</p>
       </Link>
       <Link className='flex flex-col items-center' to='/reports'>
-        <img className='h-10' src={Reports} alt='logo' />
-        <p className='text-sm'>Reports</p>
+        <img className='h-9' src={Reports} alt='logo' />
+        <p className='text-sm m-1'>Reports</p>
       </Link>
       <Link className='flex flex-col items-center' to='/permissions'>
-        <img className='h-10' src={Permissions} alt='logo' />
-        <p className='text-sm'>Permissions</p>
+        <img className='h-9' src={Permissions} alt='logo' />
+        <p className='text-sm m-1'>Permissions</p>
       </Link>
       <Link className='flex flex-col items-center' to='/settings'>
-        <img className='h-10' src={Settings} alt='logo' />
-        <p className='text-sm'>Settings</p>
+        <img className='h-9' src={Settings} alt='logo' />
+        <p className='text-sm m-1'>Settings</p>
+      </Link>
+      <Link className='flex flex-col items-center' to='/'>
+        <img className='h-9' src={Superadmin} alt='logo' />
+        <p className='text-sm m-1'>Superadmin</p>
       </Link>
     </div>
   )
