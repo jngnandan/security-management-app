@@ -3,7 +3,7 @@ import React from 'react'
 
 import clientsDashboard from '../assets/icons/clients-dashboard.svg'
 
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { ContentContext } from '../context/ContentContext'
 
 import { Oval } from 'react-loader-spinner'
@@ -47,7 +47,10 @@ const data = [
 export default function Dashboard() {
     const {employees, posts, loading} = useContext(ContentContext)
     // console.log(loading)
+    const [currentShifts, setCurrentShifts] = useState(2)
+    const [currentSearchQuery, setCurrentSearchQuery] = useState('')
 
+    // const currestShiftEmployees = employees.filter(employee => employee.name.toLowerCase().includes(currentSearchQuery.toLowerCase()) && employee.name === currentSearchQuery)
 
 
   return (
@@ -88,9 +91,9 @@ export default function Dashboard() {
         <div className='flex flex-col justify-start'>
             <div className="flex flex-row items-center mx-4">
              <p>Show</p>
-            <select onSelect={10} className="w-20 h-10 border border-1 mx-4 my-2 rounded">
-                <option value="10">10</option>
-                <option value="25">25</option>
+            <select onChange={(e) => setCurrentShifts(e.target.value)} className="mx-3 border border-gray-300 rounded py-2">
+                <option selected value="1">1</option>
+                <option value="2">2</option>
                 <option value="50">50</option>
                 <option value="100">100</option>
             </select> 
@@ -98,7 +101,7 @@ export default function Dashboard() {
 
             <div className='flex flex-row mx-4 items-center'>
                 <p>Search</p>
-                <input type="text" className="w-40 h-10 border border-1 mx-4 my-2 rounded" />
+                <input onChange={(e) => setCurrentSearchQuery(e.target.value)} type="text" className="w-40 h-10 border border-1 mx-4 my-2 rounded" />
             </div>
         </div>
                 <table className="w-screen mr-4">
@@ -110,18 +113,16 @@ export default function Dashboard() {
                     <th className='text-sm text-left'>SIA Expiry</th>
                     <th className='text-sm text-left'>Status</th>
                     </tr>
-                    {employees.map((val, key) => {
-                    return (
-                        <tr key={key} className="grid grid-cols-6 gap-4 text-sm px-4 items-center py-2 mx-4">
-                        <td className='text-sm text-left'>{val.name}</td>
-                        <td className='text-sm text-left'>{val.contact}</td>
-                        <td className='text-sm text-left'>{val.sia}</td>
-                        <td className='text-sm text-left'>{val.type}</td>
-                        <td className='text-sm text-left'>{val.expiry}</td>
-                        <td className='text-sm text-left'>{val.status}</td>
+                    {employees.slice(0, currentShifts).map((employee, index) => (
+                        <tr key={index} className="grid grid-cols-6 gap-4 text-sm items-center border border-1 py-3 mx-4">
+                        <td className='text-sm text-left'>{employee.name}</td>
+                        <td className='text-sm text-left'>{employee.contact}</td>
+                        <td className='text-sm text-left'>{employee.sia}</td>
+                        <td className='text-sm text-left'>{employee.type}</td>
+                        <td className='text-sm text-left'>{employee.expiry}</td>
+                        <td className='text-sm text-left'>{employee.status}</td>
                         </tr>
-                    )
-                    })}
+                    ))}
                 </table>
         
         </div>
