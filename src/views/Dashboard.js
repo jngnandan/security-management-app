@@ -79,14 +79,14 @@ export default function Dashboard() {
     <div>
         <p className='pt-3 pl-3 pb-2 text-xl text-gray-500'>Dashboard</p>
         {/* Active Work */}
-        <div className='grid lg:grid-cols-2 gap-3 mx-4'>
+        <div className='grid lg:grid-cols-3 gap-3 mx-4'>
             {activeWork.map((item, index) => (
                 <div key={index} className={`${item.color} grid grid-cols-3 items-center h-20 rounded-md`}>
                 <div className={`${item.contrast} h-20 grid-span-2 flex flex-col justify-center items-center rounded-l-md`}>
                 <img className='h-9' src={item.icon} alt='logo' />
                 </div>
                 <div className="pl-4">
-                <p className='text-2xl font-semibold'>{item.number}</p>
+                <p className='sq-connext sq2xl font-semibold'>{item.number}</p>
                 <p>{item.name}</p>
                 </div>
                 </div>
