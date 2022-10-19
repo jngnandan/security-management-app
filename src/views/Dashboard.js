@@ -92,8 +92,8 @@ export default function Dashboard() {
             <div className="flex flex-row items-center mx-4">
              <p>Show</p>
             <select onChange={(e) => setCurrentShifts(e.target.value)} className="mx-3 border border-gray-300 rounded py-2">
-                <option selected value="1">1</option>
-                <option value="2">2</option>
+                <option value="1">1</option>
+                <option selected value="2">2</option>
                 <option value="50">50</option>
                 <option value="100">100</option>
             </select> 
