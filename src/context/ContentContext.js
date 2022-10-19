@@ -13,8 +13,8 @@ const ContentContext = createContext();
 
 
 const ContentProvider = ({children}) => {
-    const [employees, setEmplyees] = useState('Ram')
-    const [posts, setPosts] = useState('Post')
+    const [employees, setEmplyees] = useState([])
+    const [posts, setPosts] = useState([])
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
