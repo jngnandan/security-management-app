@@ -3,48 +3,8 @@ import React from 'react'
 
 import clientsDashboard from '../assets/icons/clients-dashboard.svg'
 
-
-const Data = [
-    {
-        client: 'Double Check security Ltd t/a T-Class UK',
-        site: 'RALPH LAUREN NEW BOND ST ,W1S 3RL',
-        postcode: 'W1S3RL',
-        startTimes: '12:00',
-        endTimes: '19:00',
-        hours: 7,
-        Employee: 'USMAAN CHEEMA RIAZ',
-        contact: 3,
-        sia: 1016821349294014,
-        expiry: '04-08-2025',
-        status: 'confirmed',
-    },
-    {
-        client: 'Double Check security Ltd t/a T-Class UK',
-        site: 'RALPH LAUREN NEW BOND ST ,W1S 3RL',
-        postcode: 'W1S3RL',
-        startTimes: '12:00',
-        endTimes: '19:00',
-        hours: 7,
-        Employee: 'USMAAN CHEEMA RIAZ',
-        contact: 3,
-        sia: 1016821349294014,
-        expiry: '04-08-2025',
-        status: 'confirmed',
-    },
-    {
-        client: 'Double Check security Ltd t/a T-Class UK',
-        site: 'RALPH LAUREN NEW BOND ST ,W1S 3RL',
-        postcode: 'W1S3RL',
-        startTimes: '12:00',
-        endTimes: '19:00',
-        hours: 7,
-        Employee: 'USMAAN CHEEMA RIAZ',
-        contact: 3,
-        sia: 1016821349294014,
-        expiry: '04-08-2025',
-        status: 'confirmed',
-    },
-]
+import { useContext } from 'react'
+import { ContentContext } from '../context/ContentContext'
 
 const activeWork = [
     {
@@ -69,12 +29,21 @@ const activeWork = [
         color: 'bg-green-200',
         contrast: 'bg-green-400',
     },
+]
 
+const data = [
+  { name: "Anom", age: 19, gender: "Male" },
+  { name: "Megha", age: 19, gender: "Female" },
+  { name: "Subham", age: 25, gender: "Male"},
 ]
 
 
-
 export default function Dashboard() {
+    const {employees, posts} = useContext(ContentContext)
+    console.log(employees)
+
+
+
   return (
     <div>
         <p className='pt-3 pl-3 pb-2 text-xl text-gray-500'>Dashboard</p>
@@ -96,7 +65,24 @@ export default function Dashboard() {
         {/* Current Shifts */}
         <div className="card shadow h-40 m-4">
             <p className='pt-3 pl-3 pb-2 text-xl text-gray-500'>Current Shifts</p>
-            
+                {/* <table>
+                    <tr>
+                    <th>Name</th>
+                    <th>Contact</th>
+                    <th>SIA Number</th>
+                    <th>SIA Type</th>
+                    <th>SIA Expiry</th>
+                    <th>Status</th>
+                    </tr>
+                    {employees.map((val, key) => {
+                    return (
+                        <tr key={key}>
+                        <td>{val.name}</td>
+                        <td>{val.contact}</td>
+                        </tr>
+                    )
+                    })}
+                </table> */}
         
         </div>
 
