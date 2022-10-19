@@ -32,3 +32,12 @@ app.listen(3000, () => {
     console.log("Server is running on port 3000");
     });
 
+
+app.get('/books/', async (request, response) => {
+    const getBooksQuery = `
+    SELECT * FROM book  ORDER BY book_id;`
+    const bookArray = await db.all(getBooksQuery, (error, result) => {
+        response.send(bookArray);
+    }
+    );
+});
