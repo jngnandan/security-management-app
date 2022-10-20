@@ -75,7 +75,8 @@ export default function Dashboard() {
             <Oval type="ThreeDots" color="green" height={80} width={80} />
         </div>
     ) : (
-    <div className="bg-gray-100">
+    <div>
+ <div className="bg-gray-100">
         <p className='pt-3 pl-3 pb-2 font-semibold text-xl text-gray-500'>Dashboard</p>
         {/* Active Work */}
         <div className='grid lg:grid-cols-3 gap-3 mx-4'>
@@ -112,7 +113,7 @@ export default function Dashboard() {
                     </div>
                 </div>
                         <table className="w-screen mr-6">
-                            <tr className="grid grid-cols-6 gap-4 text-sm items-center border border-1 py-3 mx-4 px-4 bg-gray-100">
+                            <tr className="grid grid-cols-6 gap-3 text-sm items-center border border-1 py-3 mx-4 px-4 bg-gray-100">
                             {/* <button className='text-sm text-left font-semibold text-gray-700'>Name    </button> */}
                             <button className='text-sm text-left font-semibold text-gray-700'>Client    </button>
                             <button  className='text-sm text-left font-semibold text-gray-700 hover:text-black'>Site </button>
@@ -122,7 +123,7 @@ export default function Dashboard() {
                             <button className='text-sm text-left font-semibold text-gray-700'>Hours</button>
                             </tr>
                             {expiredList.slice(currenShiftsStart, currentShifts).map((employee, index) => (
-                                <tr key={index} className="grid grid-cols-6 gap-4 text-sm items-center border border-1 py-3 mx-4 px-4 text-gray-800">
+                                <tr key={index} className="grid grid-cols-6 gap-3 text-sm items-center border border-1 py-3 mx-4 px-4 text-gray-800">
                                 <td className='text-sm text-left'>{employee.name}</td>
                                 <td className='text-sm text-left'>{employee.contact}</td>
                                 <td className='text-sm text-left'>{employee.sia}</td>
@@ -190,7 +191,7 @@ export default function Dashboard() {
             </div>
         </div>
                 <table className="w-screen mr-6">
-                    <tr className="grid grid-cols-6 gap-4 text-sm items-center border border-1 py-3 mx-4 px-4 bg-gray-100">
+                    <tr className="grid grid-cols-6 gap-3 text-sm items-center border border-1 py-3 mx-4 px-4 bg-gray-100">
                     {/* <button className='text-sm text-left font-semibold text-gray-700'>Name    </button> */}
                     <button className='text-sm text-left font-semibold text-gray-700'>Name    </button>
                     <button  className='text-sm text-left font-semibold text-gray-700 hover:text-black'>Contact </button>
@@ -200,7 +201,7 @@ export default function Dashboard() {
                     <button className='text-sm text-left font-semibold text-gray-700'>Status</button>
                     </tr>
                     {employeeList.slice(currenShiftsStart, currentShifts).map((employee, index) => (
-                        <tr key={index} className="grid grid-cols-6 gap-4 text-sm items-center border border-1 py-3 mx-4 px-4 text-gray-800">
+                        <tr key={index} className="grid grid-cols-6 gap-3 text-sm items-center border border-1 py-3 mx-4 px-4 text-gray-800">
                         <td className='text-sm text-left'>{employee.name}</td>
                         <td className='text-sm text-left'>{employee.contact}</td>
                         <td className='text-sm text-left'>{employee.sia}</td>
@@ -253,7 +254,7 @@ export default function Dashboard() {
                     </div>
                 </div>
                         <table className="w-screen mr-6">
-                            <tr className="grid grid-cols-6 gap-4 text-sm items-center border border-1 py-3 mx-4 px-4 bg-gray-100">
+                            <tr className="grid grid-cols-6 gap-3 text-sm items-center border border-1 py-3 mx-4 px-4 bg-gray-100">
                             {/* <button className='text-sm text-left font-semibold text-gray-700'>Name    </button> */}
                             <button className='text-sm text-left font-semibold text-gray-700'>Name    </button>
                             <button  className='text-sm text-left font-semibold text-gray-700 hover:text-black'>Contact </button>
@@ -263,7 +264,7 @@ export default function Dashboard() {
                             <button className='text-sm text-left font-semibold text-gray-700'>Status</button>
                             </tr>
                             {expiredList.slice(currenShiftsStart, currentShifts).map((employee, index) => (
-                                <tr key={index} className="grid grid-cols-6 gap-4 text-sm items-center border border-1 py-3 mx-4 px-4 text-gray-800">
+                                <tr key={index} className="grid grid-cols-6 gap-3 text-sm items-center border border-1 py-3 mx-4 px-4 text-gray-800">
                                 <td className='text-sm text-left'>{employee.name}</td>
                                 <td className='text-sm text-left'>{employee.contact}</td>
                                 <td className='text-sm text-left'>{employee.sia}</td>
@@ -297,7 +298,10 @@ export default function Dashboard() {
             </div>
 
 
-    </div>)}
+    </div>
+    </div>
+   
+    )}
     </>
 
   )

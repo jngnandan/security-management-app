@@ -28,8 +28,21 @@ export default function Clients() {
             <Oval color="#00BFFF" height={80} width={80} />
         </div>
     ) : (
-      <div className="bg-gray-200">
-        <div className="card shadow my-4 bg-white">
+      <div className='flex flex-row w-screen'>
+        {/* Seperate Column */}
+        <div className='w-24 bg-gray-500 flex flex-col justify-start'>
+          <button className='bg-gray-200 rounded-null text-white rounded w-24 h-20 flex flex-col justify-center items-center'>
+            <img src={deleteItem} alt="delete" className="w-8 h-8 m-1"/>
+            <p className='text-xs text-gray-800'>Delete</p>
+          </button>
+          <button className='rounded-null text-white rounded w-24 h-20 flex flex-col justify-center items-center'>
+            <img src={deleteItem} alt="delete" className="w-8 h-8 m-1"/>
+            <p className='text-xs text-gray-800'>Delete</p>
+          </button>
+        </div>
+        {/* Main Column */}
+      <div className="bg-gray-200 h-screen">
+        <div className="card shadow bg-white">
             <p className='pt-3 pl-3 pb-1 text-xl font-semibold text-gray-500'>Current Licesnces</p>
         <div className='flex flex-row justify-start mb-1'>
             <div className="flex flex-row items-center mx-4">
@@ -47,8 +60,8 @@ export default function Clients() {
                 <input onChange={(e) => setCurrentClients(e.target.value)} type="text" className="w-40 h-10 border border-1 mx-4 my-2 rounded" />
             </div>
         </div>
-                <table className="w-screen mr-6">
-                    <tr className="grid grid-cols-6 gap-4 text-sm items-center border border-1 py-3 mx-4 px-4 bg-gray-100">
+                <table className="w-auto mr-6">
+                    <tr className="grid grid-cols-6 gap-3 text-sm items-center border border-1 py-3 mx-4 px-4 bg-gray-100">
                     {/* <button className='text-sm text-left font-semibold text-gray-700'>Name    </button> */}
                     <button className='text-sm text-left font-semibold text-gray-700'>Client</button>
                     <button  className='text-sm text-left col-span-2 font-semibold text-gray-700 hover:text-black'>Address</button>
@@ -57,7 +70,7 @@ export default function Clients() {
                     <button className='text-sm text-left font-semibold text-gray-700'>Actions</button>
                     </tr>
                     {clientList.slice(setCurrentClients, currentPage).map((client, index) => (
-                        <tr key={index} className="grid grid-cols-6 gap-4 text-sm items-center border border-1 py-3 mx-4 px-4 text-gray-800">
+                        <tr key={index} className="grid grid-cols-6 gap-3 text-sm items-center border border-1 py-3 mx-4 px-4 text-gray-800">
                         <td className='text-sm text-left'>{client.client}</td>
                         <td className='text-sm text-left col-span-2'>{client.address}</td>
                         <td className='text-sm text-left'>{client.contact}</td>
@@ -96,6 +109,8 @@ export default function Clients() {
                 </div>
         </div>
       </div>
+      </div>
+
     )}
     </>
   )
