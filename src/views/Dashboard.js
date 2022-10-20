@@ -48,6 +48,7 @@ export default function Dashboard() {
     const {employees, posts, loading} = useContext(ContentContext)
     // console.log(loading)
     const [currentShifts, setCurrentShifts] = useState(2)
+    const [currenShiftsStart, setCurrentShiftsStart] = useState(0)
     const [currentSearchQuery, setCurrentSearchQuery] = useState('')
 
     // const currestShiftEmployees = employees.filter(employee => employee.name.toLowerCase().includes(currentSearchQuery.toLowerCase()) && employee.name === currentSearchQuery)
@@ -86,12 +87,12 @@ export default function Dashboard() {
         </div>
 
         {/* Current Shifts */}
-        <div className="card shadow">
-            <p className='pt-3 pl-3 pb-2 text-xl text-gray-500'>Current Shifts</p>
-        <div className='flex flex-col justify-start'>
+        <div className="card shadow my-4">
+            <p className='pt-3 pl-3 pb-2 text-xl text-gray-500'>Current Licesnces</p>
+        <div className='flex flex-row justify-start mb-1'>
             <div className="flex flex-row items-center mx-4">
-             <p>Show</p>
-            <select onChange={(e) => setCurrentShifts(e.target.value)} className="mx-3 border border-gray-300 rounded py-2">
+             <p className="text-sm">Show</p>
+            <select onChange={(e) => setCurrentShifts(e.target.value)} className="mx-3 border border-gray-300 rounded py-1 pl-2 text-sm">
                 <option value="1">1</option>
                 <option selected value="2">2</option>
                 <option value="50">50</option>
@@ -100,21 +101,21 @@ export default function Dashboard() {
             </div>
 
             <div className='flex flex-row mx-4 items-center'>
-                <p>Search</p>
+                <p className="text-sm">Search</p>
                 <input onChange={(e) => setCurrentSearchQuery(e.target.value)} type="text" className="w-40 h-10 border border-1 mx-4 my-2 rounded" />
             </div>
         </div>
-                <table className="w-screen mr-4">
-                    <tr className="grid grid-cols-6 gap-4 text-sm items-center border border-1 py-3 mx-4">
-                    <th className='text-sm text-left'>Name</th>
-                    <th className='text-sm text-left'>Contact</th>
-                    <th className='text-sm text-left'>SIA</th>
-                    <th className='text-sm text-left'>Type</th>
+                <table className="w-screen mr-6">
+                    <tr className="grid grid-cols-6 gap-4 text-sm items-center border border-1 py-3 mx-4 px-4 bg-gray-100">
+                    <th className='text-sm text-left'>Name    </th>
+                    <th className='text-sm text-left'>Contact </th>
+                    <th className='text-sm text-left'>SIA  </th>
+                    <th className='text-sm text-left'>Type  </th>
                     <th className='text-sm text-left'>SIA Expiry</th>
                     <th className='text-sm text-left'>Status</th>
                     </tr>
-                    {employees.slice(0, currentShifts).map((employee, index) => (
-                        <tr key={index} className="grid grid-cols-6 gap-4 text-sm items-center border border-1 py-3 mx-4">
+                    {employees.slice(currenShiftsStart, currentShifts).map((employee, index) => (
+                        <tr key={index} className="grid grid-cols-6 gap-4 text-sm items-center border border-1 py-3 mx-4 px-4">
                         <td className='text-sm text-left'>{employee.name}</td>
                         <td className='text-sm text-left'>{employee.contact}</td>
                         <td className='text-sm text-left'>{employee.sia}</td>
@@ -124,8 +125,24 @@ export default function Dashboard() {
                         </tr>
                     ))}
                 </table>
-        
+            {/* Pagination */}
+            <div className="flex flex-row justify-end items-center mx-4 my-3">   
+                <p className='text-sm text-gray-500 mb-3'>Showing 1 to 2 of 2 entries</p>
+                <div className="flex flex-row items-center mb-3">
+                    <button onClick={() =>  setCurrentShiftsStart(0)} className="border border-2 border-gray-200 rounded h-8 w-8 flex justify-center items-center mx-1">
+                        1
+                    </button>
+                    <button onClick={() =>  setCurrentShiftsStart(1)} className="border border-2 border-gray-200 rounded h-8 w-8 flex justify-center items-center mx-1">
+                        2
+                    </button>
+                    <button onClick={() =>  setCurrentShiftsStart(3)} className="border border-2 border-gray-200 rounded h-8 w-8 flex justify-center items-center mx-1">
+                        3
+                    </button>
+                </div>
+                </div>
         </div>
+
+
 
     </div>)}
     </>
