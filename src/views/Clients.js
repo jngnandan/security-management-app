@@ -48,18 +48,18 @@ export default function Clients() {
             </div>
         </div>
                 <table className="w-screen mr-6">
-                    <tr className="grid grid-cols-5 gap-4 text-sm items-center border border-1 py-3 mx-4 px-4 bg-gray-100">
+                    <tr className="grid grid-cols-6 gap-4 text-sm items-center border border-1 py-3 mx-4 px-4 bg-gray-100">
                     {/* <button className='text-sm text-left font-semibold text-gray-700'>Name    </button> */}
                     <button className='text-sm text-left font-semibold text-gray-700'>Client</button>
-                    <button  className='text-sm text-left font-semibold text-gray-700 hover:text-black'>Address</button>
+                    <button  className='text-sm text-left col-span-2 font-semibold text-gray-700 hover:text-black'>Address</button>
                     <button className='text-sm text-left font-semibold text-gray-700'>Contact</button>
                     <button className='text-sm text-left font-semibold text-gray-700'>Email</button>
                     <button className='text-sm text-left font-semibold text-gray-700'>Actions</button>
                     </tr>
                     {clientList.slice(setCurrentClients, currentPage).map((client, index) => (
-                        <tr key={index} className="grid grid-cols-5 gap-4 text-sm items-center border border-1 py-3 mx-4 px-4 text-gray-800">
+                        <tr key={index} className="grid grid-cols-6 gap-4 text-sm items-center border border-1 py-3 mx-4 px-4 text-gray-800">
                         <td className='text-sm text-left'>{client.client}</td>
-                        <td className='text-sm text-left'>{client.address}</td>
+                        <td className='text-sm text-left col-span-2'>{client.address}</td>
                         <td className='text-sm text-left'>{client.contact}</td>
                         <td className='text-sm text-left'>{client.email}</td>
                         <td className='text-sm text-left'>
