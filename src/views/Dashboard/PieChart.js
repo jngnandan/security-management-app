@@ -39,7 +39,7 @@ ChartJS.register(ArcElement, Tooltip, Legend);
         
 
 export const data = {
-  labels: ['Security Guarding', 'Door Supervision', 'Close Protection', 'KeyHolding',],
+  labels: ['Security Guarding', 'Door Supervision', 'Close Protection', 'KeyHolding'],
   datasets: [
     {
       label: '# of Votes',
