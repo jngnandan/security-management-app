@@ -11,6 +11,8 @@ import arrowRight from '../../src/assets/icons/arrow-right.svg'
 
 import view from '../assets/icons/view.svg'
 import deleteItem from '../assets/icons/delete.svg'
+import add from '../assets/icons/add.svg'
+import list from '../assets/icons/list.svg'
 
 
 export default function Clients() {
@@ -30,20 +32,24 @@ export default function Clients() {
     ) : (
       <div className='flex flex-row w-screen'>
         {/* Seperate Column */}
-        <div className='w-24 bg-gray-500 flex flex-col justify-start'>
+        <div className='w-24 bg-gray-400 flex flex-col justify-start'>
+          <button className='rounded-null text-white rounded w-24 h-20 flex flex-col justify-center items-center'>
+            <img src={add} alt="delete" className="w-8 h-8 m-1"/>
+            <p className='text-xs text-gray-800'>Add Client</p>
+          </button>
           <button className='bg-gray-200 rounded-null text-white rounded w-24 h-20 flex flex-col justify-center items-center'>
-            <img src={deleteItem} alt="delete" className="w-8 h-8 m-1"/>
-            <p className='text-xs text-gray-800'>Delete</p>
+            <img src={list} alt="delete" className="w-8 h-8 m-1"/>
+            <p className='text-xs text-gray-800'>List of Clients</p>
           </button>
           <button className='rounded-null text-white rounded w-24 h-20 flex flex-col justify-center items-center'>
-            <img src={deleteItem} alt="delete" className="w-8 h-8 m-1"/>
-            <p className='text-xs text-gray-800'>Delete</p>
+            <img src={deleteItem} alt="delete" className="w-10 h-10 m-1"/>
+            <p className='text-xs text-gray-800'>Deleted Clients</p>
           </button>
         </div>
         {/* Main Column */}
       <div className="bg-gray-200 h-screen">
         <div className="card shadow bg-white">
-            <p className='pt-3 pl-3 pb-1 text-xl font-semibold text-gray-500'>Current Licesnces</p>
+            <p className='pt-3 pl-3 pb-1 text-xl font-semibold text-gray-500'>Current Clients</p>
         <div className='flex flex-row justify-start mb-1'>
             <div className="flex flex-row items-center mx-4">
              <p className="text-sm">Show</p>
@@ -93,10 +99,10 @@ export default function Clients() {
                     {/* <button onClick={() =>  setCurrentShiftsStart(currenShiftsStart-10)} className="border border-2 active:bg-gray-200 border-gray-200 rounded h-8 w-8 flex justify-center items-center mx-1">
                         <img src={arrowLeft} alt="arrow-left" className='p-1' />
                     </button> */}
-                    <button onClick={() =>  setCurrentPage(0)} className="border border-2 active:bg-gray-200 border-gray-200 rounded h-8 w-8 flex justify-center items-center mx-1">
+                    <button onClick={() =>  setCurrentPage(1)} className="border border-2 active:bg-gray-200 border-gray-200 rounded h-8 w-8 flex justify-center items-center mx-1">
                         1
                     </button>
-                    <button onClick={() =>  setCurrentPage(1)} className="border border-2 active:bg-gray-200 border-gray-200 rounded h-8 w-8 flex justify-center items-center mx-1">
+                    <button onClick={() =>  setCurrentPage(2)} className="border border-2 active:bg-gray-200 border-gray-200 rounded h-8 w-8 flex justify-center items-center mx-1">
                         2
                     </button>
                     <button onClick={() =>  setCurrentPage(3)} className="border border-2 active:bg-gray-200 border-gray-200 rounded h-8 w-8 flex justify-center items-center mx-1">
