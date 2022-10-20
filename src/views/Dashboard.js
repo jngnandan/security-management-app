@@ -49,14 +49,17 @@ const data = [
 export default function Dashboard() {
     const {employees, posts, loading} = useContext(ContentContext)
     const [employeeList, setEmployeeList] = useState([])
+    const [expiredList, setExpiredList] = useState([])
 
     useEffect(() => {
-    const filterActive = employees.filter(employee => employee.status === 'active')
-        setEmployeeList(employees)
-        console.log(employees.map(eachitem => eachitem.status === 'active'))
-
+    const filterActive = employees.filter(eachitem => eachitem.status.includes('Active'))
+        setEmployeeList(filterActive)
     }, [employees])
 
+    useEffect(() => {
+        const filterExpired = employees.filter(eachitem => eachitem.status.includes('Expired'))
+        setExpiredList(filterExpired)
+    }, [employees])
 
     const [currentShifts, setCurrentShifts] = useState(5)
     const [currenShiftsStart, setCurrentShiftsStart] = useState(0)
@@ -161,7 +164,7 @@ export default function Dashboard() {
                 </div>
         </div>
 
-        {/* Current Shifts */}
+        {/* Expired Employees */}
         <div className="card shadow my-4 bg-white">
             <p className='pt-3 pl-3 pb-1 text-xl text-gray-500'>SIA License Expiry</p>
         <div className='flex flex-row justify-start mb-1'>
@@ -190,7 +193,7 @@ export default function Dashboard() {
                     <button className='text-sm text-left font-semibold text-gray-700'>SIA Expiry</button>
                     <button className='text-sm text-left font-semibold text-gray-700'>Status</button>
                     </tr>
-                    {employeeList.slice(currenShiftsStart, currentShifts).map((employee, index) => (
+                    {expiredList.slice(currenShiftsStart, currentShifts).map((employee, index) => (
                         <tr key={index} className="grid grid-cols-6 gap-4 text-sm items-center border border-1 py-3 mx-4 px-4 text-gray-800">
                         <td className='text-sm text-left'>{employee.name}</td>
                         <td className='text-sm text-left'>{employee.contact}</td>
