@@ -1,5 +1,5 @@
 
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import clientsDashboard from '../assets/icons/clients-dashboard.svg'
 
@@ -48,12 +48,22 @@ const data = [
 
 export default function Dashboard() {
     const {employees, posts, loading} = useContext(ContentContext)
-    // console.log(loading)
-    const [currentShifts, setCurrentShifts] = useState(2)
+    const [employeeList, setEmployeeList] = useState(employees)
+
+    useEffect(() => {
+        setEmployeeList(employees)
+    }, [employees])
+
+
+    const [currentShifts, setCurrentShifts] = useState(5)
     const [currenShiftsStart, setCurrentShiftsStart] = useState(0)
     const [currentSearchQuery, setCurrentSearchQuery] = useState('')
+    const [currentSearchResults, setCurrentSearchResults] = useState([])
+
 
     // const currestShiftEmployees = employees.filter(employee => employee.name.toLowerCase().includes(currentSearchQuery.toLowerCase()) && employee.name === currentSearchQuery)
+
+        console.log(employees)
 
 
   return (
@@ -91,10 +101,10 @@ export default function Dashboard() {
         <div className='flex flex-row justify-start mb-1'>
             <div className="flex flex-row items-center mx-4">
              <p className="text-sm">Show</p>
-            <select onChange={(e) => setCurrentShifts(e.target.value)} className="mx-3 border border-gray-300 rounded py-1 pl-2 text-sm">
+            <select onChange={(e) => setCurrentShifts(e.target.value)} className="mx-3 border border-1 border-gray-300 rounded py-1 pl-2 text-sm">
                 <option value="1">1</option>
-                <option selected value="2">2</option>
-                <option value="50">50</option>
+                <option value="2">2</option>
+                <option selected value="3">3</option>
                 <option value="100">100</option>
             </select> 
             </div>
@@ -106,15 +116,16 @@ export default function Dashboard() {
         </div>
                 <table className="w-screen mr-6">
                     <tr className="grid grid-cols-6 gap-4 text-sm items-center border border-1 py-3 mx-4 px-4 bg-gray-100">
-                    <th className='text-sm text-left'>Name    </th>
-                    <th className='text-sm text-left'>Contact </th>
-                    <th className='text-sm text-left'>SIA  </th>
-                    <th className='text-sm text-left'>Type  </th>
-                    <th className='text-sm text-left'>SIA Expiry</th>
-                    <th className='text-sm text-left'>Status</th>
+                    {/* <button className='text-sm text-left font-semibold text-gray-700'>Name    </button> */}
+                    <button className='text-sm text-left font-semibold text-gray-700'>Name    </button>
+                    <button  className='text-sm text-left font-semibold text-gray-700 hover:text-black'>Contact </button>
+                    <button className='text-sm text-left font-semibold text-gray-700'>SIA  </button>
+                    <button className='text-sm text-left font-semibold text-gray-700'>Type  </button>
+                    <button className='text-sm text-left font-semibold text-gray-700'>SIA Expiry</button>
+                    <button className='text-sm text-left font-semibold text-gray-700'>Status</button>
                     </tr>
-                    {employees.slice(currenShiftsStart, currentShifts).map((employee, index) => (
-                        <tr key={index} className="grid grid-cols-6 gap-4 text-sm items-center border border-1 py-3 mx-4 px-4">
+                    {employeeList.slice(currenShiftsStart, currentShifts).map((employee, index) => (
+                        <tr key={index} className="grid grid-cols-6 gap-4 text-sm items-center border border-1 py-3 mx-4 px-4 text-gray-800">
                         <td className='text-sm text-left'>{employee.name}</td>
                         <td className='text-sm text-left'>{employee.contact}</td>
                         <td className='text-sm text-left'>{employee.sia}</td>
