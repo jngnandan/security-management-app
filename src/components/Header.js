@@ -17,7 +17,7 @@ import Superadmin from '../assets/icons/superadmin.svg'
 
 export default function Header() {
   return (
-    <div className='grid lg:grid-cols-12 grid-cols-6 gap-3 py-3 bg-blue-200'>
+    <div className='grid lg:grid-cols-12 grid-cols-6 gap-3 py-3 bg-green-200'>
       <Link className='flex flex-col items-center' to='/'>
         <img className='h-9' src={Dashboard} alt='logo' />
         <p className='text-sm m-1'>Dashboard</p>
