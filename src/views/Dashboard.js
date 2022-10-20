@@ -10,6 +10,8 @@ import { Oval } from 'react-loader-spinner'
 
 import PieChart from '../components/PieChart'
 import {Bar, Pie} from 'react-chartjs-2'
+import arrowLeft from '../../src/assets/icons/arrow-left.svg' 
+import arrowRight from '../../src/assets/icons/arrow-right.svg' 
 
 
 const activeWork = [
@@ -61,10 +63,7 @@ export default function Dashboard() {
             <Oval type="ThreeDots" color="green" height={80} width={80} />
         </div>
     ) : (
-            <div>
-                <div>
-                    
-                </div>
+            <div className="bg-gray-100">
         <p className='pt-3 pl-3 pb-2 text-xl text-gray-500'>Dashboard</p>
         {/* Active Work */}
         <div className='grid lg:grid-cols-3 gap-3 mx-4'>
@@ -87,8 +86,8 @@ export default function Dashboard() {
         </div>
 
         {/* Current Shifts */}
-        <div className="card shadow my-4">
-            <p className='pt-3 pl-3 pb-2 text-xl text-gray-500'>Current Licesnces</p>
+        <div className="card shadow my-4 bg-white">
+            <p className='pt-3 pl-3 pb-1 text-xl text-gray-500'>Current Licesnces</p>
         <div className='flex flex-row justify-start mb-1'>
             <div className="flex flex-row items-center mx-4">
              <p className="text-sm">Show</p>
@@ -126,17 +125,23 @@ export default function Dashboard() {
                     ))}
                 </table>
             {/* Pagination */}
-            <div className="flex flex-row justify-end items-center mx-4 my-3">   
+            <div className="flex flex-row justify-between items-center mx-4 my-3">   
                 <p className='text-sm text-gray-500 mb-3'>Showing 1 to 2 of 2 entries</p>
                 <div className="flex flex-row items-center mb-3">
-                    <button onClick={() =>  setCurrentShiftsStart(0)} className="border border-2 border-gray-200 rounded h-8 w-8 flex justify-center items-center mx-1">
+                    {/* <button onClick={() =>  setCurrentShiftsStart(currenShiftsStart-10)} className="border border-2 active:bg-gray-200 border-gray-200 rounded h-8 w-8 flex justify-center items-center mx-1">
+                        <img src={arrowLeft} alt="arrow-left" className='p-1' />
+                    </button> */}
+                    <button onClick={() =>  setCurrentShiftsStart(0)} className="border border-2 active:bg-gray-200 border-gray-200 rounded h-8 w-8 flex justify-center items-center mx-1">
                         1
                     </button>
-                    <button onClick={() =>  setCurrentShiftsStart(1)} className="border border-2 border-gray-200 rounded h-8 w-8 flex justify-center items-center mx-1">
+                    <button onClick={() =>  setCurrentShiftsStart(1)} className="border border-2 active:bg-gray-200 border-gray-200 rounded h-8 w-8 flex justify-center items-center mx-1">
                         2
                     </button>
-                    <button onClick={() =>  setCurrentShiftsStart(3)} className="border border-2 border-gray-200 rounded h-8 w-8 flex justify-center items-center mx-1">
+                    <button onClick={() =>  setCurrentShiftsStart(3)} className="border border-2 active:bg-gray-200 border-gray-200 rounded h-8 w-8 flex justify-center items-center mx-1">
                         3
+                    </button>
+                    <button onClick={() =>  setCurrentShiftsStart(currenShiftsStart+10)} className="border border-2 active:bg-gray-200 border-gray-200 rounded h-8 w-8 flex justify-center items-center mx-1">
+                        <img src={arrowRight} alt="arrow-left" className='p-1' />
                     </button>
                 </div>
                 </div>
