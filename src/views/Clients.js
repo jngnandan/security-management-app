@@ -47,7 +47,7 @@ export default function Clients() {
         {tabsList.map((tab) => (
           <button 
             key={tab.tabId}
-            className={`rounded-null text-white rounded w-24 h-20 flex flex-col justify-center items-center ${tabState === tab.tabId ? 'bg-gray-200' : 'bg-gray-400'}`}
+            className={`rounded-none text-white rounded w-24 h-20 flex flex-col justify-center items-center ${tabState === tab.tabId ? 'bg-gray-200' : 'bg-gray-400'}`}
             onClick={() => setTabState(tab.tabId)}
           >
             <img src={tab.tabId === 'AddClient' ? add : tab.tabId === 'ListOfClients' ? list : deleteItem} alt="delete" className="w-8 h-8 m-1"/>
