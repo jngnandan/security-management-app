@@ -41,13 +41,13 @@ export default function Clients() {
             <Oval color="#00BFFF" height={80} width={80} />
         </div>
     ) : (
-      <div className='flex flex-row w-screen'>
+      <div className='flex flex-row w-screen mr-4'>
         {/* Seperate Column */}
-        <div>
+        <div className="bg-gray-400">
         {tabsList.map((tab) => (
           <button 
             key={tab.tabId}
-            className={`rounded-none text-white rounded w-24 h-20 flex flex-col justify-center items-center ${tabState === tab.tabId ? 'bg-gray-200' : 'bg-gray-400'}`}
+            className={`rounded-none text-white rounded w-24 h-24 flex flex-col justify-center items-center ${tabState === tab.tabId ? 'bg-gray-200' : 'bg-gray-400'}`}
             onClick={() => setTabState(tab.tabId)}
           >
             <img src={tab.tabId === 'AddClient' ? add : tab.tabId === 'ListOfClients' ? list : deleteItem} alt="delete" className="w-8 h-8 m-1"/>
@@ -58,7 +58,7 @@ export default function Clients() {
 
 
         {/* Main Column */}
-      <div className="">
+      <div className="mr-8">
         {tabState === 'AddClient' && <AddClient />}
         {tabState === 'ListOfClients' && <ListOfClients />}
         {tabState === 'Deleted Clients' && <DeletedClients />}
