@@ -54,10 +54,10 @@ export default function ListOfClients() {
                     </tr>
                     {clientList.slice(setCurrentClients, currentPage).map((client, index) => (
                         <tr key={index} className="grid grid-cols-6 gap-3 text-sm items-center border border-1 py-3 mx-4 px-4 text-gray-800">
-                        <td className='text-sm text-left'>{client.client}</td>
-                        <td className='text-sm text-left col-span-2'>{client.address}</td>
-                        <td className='text-sm text-left'>{client.contact}</td>
-                        <td className='text-sm text-left'>{client.email}</td>
+                        <td className='text-sm text-left'>{client.clientName}</td>
+                        <td className='text-sm text-left col-span-2'>{client.clientAddress}</td>
+                        <td className='text-sm text-left'>{client.contactName}</td>
+                        <td className='text-sm text-left'>{client.contactEmail}</td>
                         <td className='text-sm text-left'>
                             <button className='bg-blue-400 text-white rounded p-1 m-1'>
                               <img src='https://firebasestorage.googleapis.com/v0/b/securitymanagementapp.appspot.com/o/view.svg?alt=media&token=a9d40205-29d8-450b-8c66-74b385e83de1' alt="view" className="w-8 h-8 m-1" />
