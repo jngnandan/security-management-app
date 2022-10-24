@@ -7,7 +7,7 @@ import {collection, getDocs, setDoc, doc, query} from 'firebase/firestore'
 import {db} from '../../firebase'
 
 
-export default function AddClient() {
+export default function AddSites() {
 
   const [clientName, setClientName] = useState('')
   const [clientAddress, setClientAddress] = useState('')

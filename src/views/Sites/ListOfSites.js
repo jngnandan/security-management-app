@@ -8,7 +8,7 @@ import {collection, getDocs, setDoc, doc, query} from 'firebase/firestore'
 import {db} from '../../firebase'
 
 
-export default function ListOfClients() {
+export default function ListOfSites() {
         const {employees, posts, clientList, loading} = useContext(ContentContext)
       const [currentClients, setCurrentClients] = useState([])
       const [currentPage, setCurrentPage] = useState(3)
@@ -18,7 +18,7 @@ export default function ListOfClients() {
   return (
     <div className="bg-gray-200 h-screen">
       <div className="card shadow bg-white">
-            <p className='pt-3 pl-3 pb-1 text-xl font-semibold text-gray-500'>Current Clients</p>
+            <p className='pt-3 pl-3 pb-1 text-xl font-semibold text-gray-500'>Current Sites</p>
         <div className='flex flex-row justify-start mb-1'>
             <div className="flex flex-row items-center mx-4">
              <p className="text-sm">Show</p>

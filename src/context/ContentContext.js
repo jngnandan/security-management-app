@@ -1,6 +1,6 @@
 
 
-import {createContext, useEffect, useState, useContext} from 'react'
+import {createContext, useEffect, useState, useContext, useMemo} from 'react'
 
 
 import {collection, getDocs, setDoc, doc, query} from 'firebase/firestore'
@@ -18,7 +18,7 @@ const ContentProvider = ({children}) => {
     const [loading, setLoading] = useState(true)
     const [clientList, setClientList] = useState([])
 
-    useEffect(() => {
+    useMemo(() => {
     const getUsers = async () => {
         const querySnapshot = await getDocs(collection(db, 'employees'))
         const users = querySnapshot.docs.map(doc => doc.data())
@@ -28,7 +28,9 @@ const ContentProvider = ({children}) => {
     getUsers()  
 }, [])
 
-        useEffect(() => {
+
+
+        useMemo(() => {
     const getClients = async () => {
         const querySnapshot = await getDocs(collection(db, 'clients'))
         const clients = querySnapshot.docs.map(doc => doc.data())
