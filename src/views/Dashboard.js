@@ -15,12 +15,16 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import {Bar, Pie} from 'react-chartjs-2'
 import PieChart from './Dashboard/PieChart'
 
+import {FaUserFriends} from 'react-icons/fa'
+import {FaThList} from 'react-icons/fa'
+import {FaStream} from 'react-icons/fa'
+
 
 const activeWork = [
     {
         name: 'ACTIVE STAFF',
         number: 243,
-        icon: '../assets/icons/clients-dashboard.svg',
+        icon: FaUserFriends,
         color: 'bg-blue-200',
         contrast: 'bg-blue-400',
        
@@ -28,14 +32,14 @@ const activeWork = [
      {
         name: 'ACTIVE CLIENTS',
         number: 243,
-        icon: '../assets/icons/clients-dashboard.svg',
+        icon: FaThList,
         color: 'bg-red-200',
         contrast: 'bg-red-400',
     },
     {
         name: 'ACTIVE SITES',
         number: 129,
-        icon: '../assets/icons/clients-dashboard.svg',
+        icon: FaStream,
         color: 'bg-green-200',
         contrast: 'bg-green-400',
     },
@@ -63,11 +67,6 @@ export default function Dashboard() {
     const [currentSearchResults, setCurrentSearchResults] = useState([])
 
 
-    // const currestShiftEmployees = employees.filter(employee => employee.name.toLowerCase().includes(currentSearchQuery.toLowerCase()) && employee.name === currentSearchQuery)
-
-        // console.log(employees)
-
-
   return (
     <>
     {loading ? (
@@ -83,8 +82,11 @@ export default function Dashboard() {
             {activeWork.map((item, index) => (
                 <div key={index} className={`${item.color} grid grid-cols-3 items-center h-20 rounded-md`}>
                 <div className={`${item.contrast} h-20 grid-span-2 flex flex-col justify-center items-center rounded-l-md`}>
-                <img className='h-9' src={item.icon} alt='logo' />
+                {/* icons */}
+                <div className='text-2xl font-semibold text-white'>
+                    {item.icon === FaUserFriends ? <FaUserFriends/> : item.icon === FaThList ? <FaThList/> : <FaStream/>}
                 </div>
+        </div>
                 <div className="pl-4">
                 <p className='sq-connext sq2xl font-semibold'>{item.number}</p>
                 <p>{item.name}</p>
