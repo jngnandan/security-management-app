@@ -33,76 +33,76 @@ export default function Header() {
   return (
     <div className='grid lg:grid-cols-12 grid-cols-6 gap-3 py-2 bg-green-400'>
       <Link className='flex flex-col items-center' to='/'>
-        <button className='text-gray-700 p-1 hover:text-white'>
+        <button className='text-gray-700 p-1 hover:text-white text-center flex flex-col justify-center items-center'>
               <FiHome className="w-8 h-8" />
+              <p className='text-sm font-semibold m-1'>Dashboard</p>
           </button>
-        <p className='text-sm font-semibold text-gray-700 m-1'>Dashboard</p>
       </Link>
       <Link className='flex flex-col items-center' to='/workforce'>
-        <button className='text-gray-700 p-1 hover:text-white'>
+        <button className='text-gray-700 p-1 hover:text-white flex flex-col justify-center items-center'>
               <FiUsers className="w-8 h-8" />
+              <p className='text-sm font-semibold m-1'>Workforce</p>
           </button>
-        <p className='text-sm font-semibold text-gray-700 m-1'>Workforce</p>
       </Link>
       <Link className='flex flex-col items-center' to='/clients'>
-        <button className='text-gray-700 p-1 hover:text-white'>
+        <button className='text-gray-700 p-1 hover:text-white flex flex-col justify-center items-center'>
               <FiLayers className="w-8 h-8" />
+              <p className='text-sm font-semibold m-1'>Clients</p>
           </button>
-        <p className='text-sm font-semibold text-gray-700 m-1'>Clients</p>
       </Link>
       <Link className='flex flex-col items-center' to='/sites'>
-        <button className='text-gray-700 p-1 hover:text-white'>
+        <button className='text-gray-700 p-1 hover:text-white flex flex-col justify-center items-center'>
               <FiMap className="w-8 h-8" />
+              <p className='text-sm font-semibold m-1'>Sites</p>
           </button>
-        <p className='text-sm font-semibold text-gray-700 m-1'>Sites</p>
       </Link>
       <Link className='flex flex-col items-center' to='/roster'>
-        <button className='text-gray-700 p-1 hover:text-white'>
+        <button className='text-gray-700 p-1 hover:text-white flex flex-col justify-center items-center'>
               <FiCalendar className="w-8 h-8" />
+              <p className='text-sm font-semibold m-1'>Roster</p>
           </button>
-        <p className='text-sm font-semibold text-gray-700 m-1'>Roster</p>
       </Link>
       <Link className='flex flex-col items-center' to='/calls'>
-        <button className='text-gray-700 p-1 hover:text-white'>
+        <button className='text-gray-700 p-1 hover:text-white flex flex-col justify-center items-center'>
               <FiPhoneIncoming className="w-8 h-8" />
+              <p className='text-sm font-semibold m-1'>Calls</p>
           </button>
-        <p className='text-sm font-semibold text-gray-700 m-1'>Calls</p>
       </Link>
       <Link className='flex flex-col items-center' to='/events'>
-        <button className='text-gray-700 p-1 hover:text-white'>
+        <button className='text-gray-700 p-1 hover:text-white flex flex-col justify-center items-center'>
               <FiCodesandbox className="w-8 h-8" />
+              <p className='text-sm font-semibold m-1'>Events</p>
           </button>
-        <p className='text-sm font-semibold text-gray-700 m-1'>Events</p>
       </Link>
       <Link className='flex flex-col items-center' to='/finance'>
-          <button className='text-gray-700 p-1 hover:text-white'>
+          <button className='text-gray-700 p-1 hover:text-white flex flex-col justify-center items-center'>
               <FiBarChart className="w-8 h-8" />
+              <p className='text-sm font-semibold m-1'>Finance</p>
           </button>
-        <p className='text-sm font-semibold text-gray-700 m-1'>Finance</p>
       </Link>
       <Link className='flex flex-col items-center' to='/reports'>
-      <button className='text-gray-700 p-1 hover:text-white'>
+      <button className='text-gray-700 p-1 hover:text-white flex flex-col justify-center items-center'>
           <FiFile className="w-8 h-8" />
+          <p className='text-sm font-semibold m-1'>Reports</p>
           </button>
-        <p className='text-sm font-semibold text-gray-700 m-1'>Reports</p>
       </Link>
       <Link className='flex flex-col items-center' to='/permissions'>
-          <button className='text-gray-700 p-1 hover:text-white'>
+          <button className='text-gray-700 p-1 hover:text-white flex flex-col justify-center items-center'>
               <FiUserCheck className="w-8 h-8" />
+              <p className='text-sm font-semibold m-1'>Permissions</p>
           </button>
-          <p className='text-sm font-semibold text-gray-700 m-1'>Permissions</p>
       </Link>
       <Link className='flex flex-col items-center' to='/settings'>
-        <button className='text-gray-700 p-1 hover:text-white'>
+        <button className='text-gray-700 p-1 hover:text-white flex flex-col justify-center items-center'>
               <FiSettings className="w-8 h-8" />
+              <p className='text-sm font-semibold m-1'>Settings</p>
           </button>
-        <p className='text-sm font-semibold text-gray-700 m-1'>Settings</p>
       </Link>
       <Link className='flex flex-col items-center' to='/'>
-        <button className='text-gray-700 p-1 hover:text-white'>
+        <button className='text-gray-700 p-1 hover:text-white flex flex-col justify-center items-center'>
               <FiPower className="w-8 h-8" />
+              <p className='text-sm font-semibold m-1'>Superadmin</p>
           </button>        
-        <p className='text-sm font-semibold text-gray-700 m-1'>Superadmin</p>
       </Link>
     </div>
   )
