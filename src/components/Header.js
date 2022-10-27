@@ -1,5 +1,6 @@
 
 import React from 'react'
+import { useState } from 'react'
 
 import { Link } from 'react-router-dom'
 import Dashboard from '../assets/icons/dashboard.svg'
@@ -28,82 +29,60 @@ import {FiFile} from 'react-icons/fi'
 import {FiUserCheck} from 'react-icons/fi'
 import {FiPower } from 'react-icons/fi'
 
+import {FiPlusCircle} from 'react-icons/fi'
+import {FiList} from 'react-icons/fi'
+import {FiTrash} from 'react-icons/fi'
 
-export default function Header() {
+const tabsList = [
+  { tabId: 'Dashboard', displayText: 'Dashboard' },
+  { tabId: 'Workforce', displayText: 'Workforce' },
+  { tabId: 'Clients', displayText: 'Clients' },
+  { tabId: 'Sites', displayText: 'Sites' },
+  { tabId: 'Roster', displayText: 'Roster' },
+  { tabId: 'Calls', displayText: 'Calls' },
+  { tabId: 'Events', displayText: 'Events' },
+  { tabId: 'Finance', displayText: 'Finance' },
+  { tabId: 'Reports', displayText: 'Reports' },
+  { tabId: 'Permissions', displayText: 'Permissions' },
+  { tabId: 'Settings', displayText: 'Settings' },
+  { tabId: 'Superadmin', displayText: 'Superadmin' },
+]
+
+
+function Header() {
+        const [tabState, setTabState] = useState('ListOfClients')
+
   return (
-    <div className='grid lg:grid-cols-12 grid-cols-6 gap-3 py-2 bg-green-400'>
-      <Link className='flex flex-col items-center' to='/'>
-        <button className='text-gray-700 p-1 hover:text-white text-center flex flex-col justify-center items-center'>
-              <FiHome className="w-8 h-8" />
-              <p className='text-sm font-semibold m-1'>Dashboard</p>
+    <div>
+      {/* Seperate Column */}
+        <div className="bg-green-400 flex flex-row justify-between">
+        {tabsList.map((tab) => (
+          <button 
+            key={tab.tabId}
+            className={`rounded-none text-gray-700 w-24 h-24 flex flex-col justify-center items-center ${tabState === tab.tabId ? 'bg-green-300' : 'bg-green-400'}`}
+            onClick={() => setTabState(tab.tabId)}
+          >
+            <Link to={`/${tab.tabId}`} className="flex flex-col justify-center items-center">
+              {tab.tabId === 'Dashboard' && <FiHome size={27} />}
+              {tab.tabId === 'Workforce' && <FiUsers size={27} />}
+              {tab.tabId === 'Clients' && <FiFile size={27} />}
+              {tab.tabId === 'Sites' && <FiMap size={27} />}
+              {tab.tabId === 'Roster' && <FiCalendar size={27} />}
+              {tab.tabId === 'Calls' && <FiPhoneIncoming size={27} />}
+              {tab.tabId === 'Events' && <FiCodesandbox size={27} />}
+              {tab.tabId === 'Finance' && <FiBarChart size={27} />}
+              {tab.tabId === 'Reports' && <FiLayers size={27} />}
+              {tab.tabId === 'Permissions' && <FiUserCheck size={27} />}
+              {tab.tabId === 'Settings' && <FiSettings size={27} />}
+              {tab.tabId === 'Superadmin' && <FiPower size={27} />}
+              <div className="text-sm font-medium pt-1">{tab.displayText}</div>
+            </Link>            
           </button>
-      </Link>
-      <Link className='flex flex-col items-center' to='/workforce'>
-        <button className='text-gray-700 p-1 hover:text-white flex flex-col justify-center items-center'>
-              <FiUsers className="w-8 h-8" />
-              <p className='text-sm font-semibold m-1'>Workforce</p>
-          </button>
-      </Link>
-      <Link className='flex flex-col items-center' to='/clients'>
-        <button className='text-gray-700 p-1 hover:text-white flex flex-col justify-center items-center'>
-              <FiLayers className="w-8 h-8" />
-              <p className='text-sm font-semibold m-1'>Clients</p>
-          </button>
-      </Link>
-      <Link className='flex flex-col items-center' to='/sites'>
-        <button className='text-gray-700 p-1 hover:text-white flex flex-col justify-center items-center'>
-              <FiMap className="w-8 h-8" />
-              <p className='text-sm font-semibold m-1'>Sites</p>
-          </button>
-      </Link>
-      <Link className='flex flex-col items-center' to='/roster'>
-        <button className='text-gray-700 p-1 hover:text-white flex flex-col justify-center items-center'>
-              <FiCalendar className="w-8 h-8" />
-              <p className='text-sm font-semibold m-1'>Roster</p>
-          </button>
-      </Link>
-      <Link className='flex flex-col items-center' to='/calls'>
-        <button className='text-gray-700 p-1 hover:text-white flex flex-col justify-center items-center'>
-              <FiPhoneIncoming className="w-8 h-8" />
-              <p className='text-sm font-semibold m-1'>Calls</p>
-          </button>
-      </Link>
-      <Link className='flex flex-col items-center' to='/events'>
-        <button className='text-gray-700 p-1 hover:text-white flex flex-col justify-center items-center'>
-              <FiCodesandbox className="w-8 h-8" />
-              <p className='text-sm font-semibold m-1'>Events</p>
-          </button>
-      </Link>
-      <Link className='flex flex-col items-center' to='/finance'>
-          <button className='text-gray-700 p-1 hover:text-white flex flex-col justify-center items-center'>
-              <FiBarChart className="w-8 h-8" />
-              <p className='text-sm font-semibold m-1'>Finance</p>
-          </button>
-      </Link>
-      <Link className='flex flex-col items-center' to='/reports'>
-      <button className='text-gray-700 p-1 hover:text-white flex flex-col justify-center items-center'>
-          <FiFile className="w-8 h-8" />
-          <p className='text-sm font-semibold m-1'>Reports</p>
-          </button>
-      </Link>
-      <Link className='flex flex-col items-center' to='/permissions'>
-          <button className='text-gray-700 p-1 hover:text-white flex flex-col justify-center items-center'>
-              <FiUserCheck className="w-8 h-8" />
-              <p className='text-sm font-semibold m-1'>Permissions</p>
-          </button>
-      </Link>
-      <Link className='flex flex-col items-center' to='/settings'>
-        <button className='text-gray-700 p-1 hover:text-white flex flex-col justify-center items-center'>
-              <FiSettings className="w-8 h-8" />
-              <p className='text-sm font-semibold m-1'>Settings</p>
-          </button>
-      </Link>
-      <Link className='flex flex-col items-center' to='/'>
-        <button className='text-gray-700 p-1 hover:text-white flex flex-col justify-center items-center'>
-              <FiPower className="w-8 h-8" />
-              <p className='text-sm font-semibold m-1'>Superadmin</p>
-          </button>        
-      </Link>
+        ))}
+        </div>
+        
     </div>
   )
 }
+
+export default Header

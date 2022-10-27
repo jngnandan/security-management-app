@@ -23,7 +23,7 @@ function App() {
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route exact path='/' element={<Dashboard />} />
+        <Route exact path='/dashboard' element={<Dashboard />} />
         <Route path='/workforce' element={<Workforce />} />
         <Route path='/clients' element={<Clients />} />
         <Route path='/sites' element={<Sites />} />
