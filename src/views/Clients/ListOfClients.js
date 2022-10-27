@@ -1,5 +1,4 @@
 
-
 import React from 'react'
 import { useContext, useState, useEffect } from 'react'
 import { ContentContext } from '../../context/ContentContext'
@@ -7,13 +6,18 @@ import { ContentContext } from '../../context/ContentContext'
 import {collection, getDocs, setDoc, doc, query} from 'firebase/firestore'
 import {db} from '../../firebase'
 
+import {FiTrash} from 'react-icons/fi'
+import {FiEye} from 'react-icons/fi'
+
+import {Link} from 'react-router-dom'
 
 export default function ListOfClients() {
-        const {employees, posts, clientList, loading} = useContext(ContentContext)
+      const {employees, posts, clientList, loading} = useContext(ContentContext)
       const [currentClients, setCurrentClients] = useState([])
       const [currentPage, setCurrentPage] = useState(3)
       const [tabState, setTabState] = useState('ListOfClients')
 
+    //   console.log(clientList)
 
   return (
     <div className="bg-gray-200 h-screen">
@@ -51,11 +55,13 @@ export default function ListOfClients() {
                         <td className='text-sm text-left'>{client.contactName}</td>
                         <td className='text-sm text-left'>{client.contactEmail}</td>
                         <td className='text-sm text-left'>
-                            <button className='bg-blue-400 text-white rounded p-1 m-1'>
-                              <img src='https://firebasestorage.googleapis.com/v0/b/securitymanagementapp.appspot.com/o/view.svg?alt=media&token=a9d40205-29d8-450b-8c66-74b385e83de1' alt="view" className="w-8 h-8 m-1" />
+                            <button className='bg-blue-400 hover:bg-blue-500 text-white rounded p-1 m-1'>
+                                <Link to={`/viewclient/${client.id}`}>
+                                <FiEye className="w-6 h-6 m-1" />
+                                </Link>
                             </button>
-                            <button className='bg-red-400 text-white rounded p-1 m-1'>
-                              <img src='https://firebasestorage.googleapis.com/v0/b/securitymanagementapp.appspot.com/o/delete.svg?alt=media&token=cbfe3117-d6e8-473d-928f-695784f22097' alt="delete" className="w-8 h-8 m-1"/>
+                            <button className='bg-red-400 hover:bg-red-500 text-white rounded p-1 m-1'>
+                                <FiTrash className="w-6 h-6 m-1" />
                             </button>
                         </td>
                         </tr>

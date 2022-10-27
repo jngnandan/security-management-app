@@ -9,9 +9,6 @@ import {db} from '../firebase'
 
 const ContentContext = createContext();
 
-
-
-
 const ContentProvider = ({children}) => {
     const [employees, setEmplyees] = useState([])
     const [posts, setPosts] = useState([])
@@ -28,9 +25,7 @@ const ContentProvider = ({children}) => {
     getUsers()  
 }, [])
 
-
-
-        useMemo(() => {
+    useMemo(() => {
     const getClients = async () => {
         const querySnapshot = await getDocs(collection(db, 'clients'))
         const clients = querySnapshot.docs.map(doc => doc.data())
@@ -40,6 +35,7 @@ const ContentProvider = ({children}) => {
     getClients()  
 }, [])
 
+console.log(employees)
 
 return(
     <ContentContext.Provider value={{employees, posts, loading, clientList}}>

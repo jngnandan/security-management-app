@@ -14,8 +14,9 @@ import AddClient from '../views/Clients/AddClient'
 import ListOfClients from '../views/Clients/ListOfClients'
 import DeletedClients from '../views/Clients/DeletedClients'
 
-// import {AiOutlineDelete} from 'react-icons/ai'
-
+import {FiPlusCircle} from 'react-icons/fi'
+import {FiList} from 'react-icons/fi'
+import {FiTrash} from 'react-icons/fi'
 
 const tabsList = [
   { tabId: 'AddClient', displayText: 'Add Client' },
@@ -41,19 +42,19 @@ export default function Clients() {
     ) : (
       <div className='flex flex-row w-screen mr-4'>
         {/* Seperate Column */}
-        <div className="bg-gray-400">
+        <div className="bg-gray-400 h-screen">
         {tabsList.map((tab) => (
           <button 
             key={tab.tabId}
-            className={`rounded-none text-white rounded w-24 h-24 flex flex-col justify-center items-center ${tabState === tab.tabId ? 'bg-gray-200' : 'bg-gray-400'}`}
+            className={`rounded-none text-gray-700 focus:text-gray-400 rounded w-24 h-24 flex flex-col justify-center items-center ${tabState === tab.tabId ? 'bg-gray-200' : 'bg-gray-400'}`}
             onClick={() => setTabState(tab.tabId)}
           >
-            <img src={tab.tabId === 'AddClient' ? add : tab.tabId === 'ListOfClients' ? list : deleteItem} alt="delete" className="w-8 h-8 m-1"/>
-            <p className='text-xs text-gray-800'>{tab.displayText}</p>
+            {/* <img src={tab.tabId === 'AddClient' ? add : tab.tabId === 'ListOfClients' ? list : deleteItem} alt="delete" className="w-8 h-8 m-1"/> */}
+            {tab.tabId === 'AddClient' ? <FiPlusCircle className="w-8 h-8 m-1"/> : tab.tabId === 'ListOfClients' ? <FiList className="w-8 h-8 m-1"/> : <FiTrash className="w-8 h-8 m-1"/>}
+            <p className='text-sm font-medium pt-1'>{tab.displayText}</p>
           </button>
         ))}
         </div>
-
 
         {/* Main Column */}
       <div className="mr-8">

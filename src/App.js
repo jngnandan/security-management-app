@@ -16,6 +16,7 @@ import Finance from './views/Finance';
 import Reports from './views/Reports';
 import Permissions from './views/Permissions';
 import Settings from './views/Settings'
+import ViewClient from './views/Clients/ViewClient';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
         <Route path='/reports' element={<Reports />} />
         <Route path='/permissions' element={<Permissions />} />
         <Route path='/settings' element={<Settings />} />
+        <Route path='/clients/:id' element={<ViewClient />} />
       </Routes>
 
   </BrowserRouter>

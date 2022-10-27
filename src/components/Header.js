@@ -15,56 +15,94 @@ import Permissions from '../assets/icons/permissions.svg'
 import Settings from '../assets/icons/settings.svg'
 import Superadmin from '../assets/icons/superadmin.svg'
 
+import {FiSettings} from 'react-icons/fi' 
+import {FiLayers} from 'react-icons/fi'
+import {FiHome} from 'react-icons/fi'
+import {FiUsers} from 'react-icons/fi'
+import {FiMap} from 'react-icons/fi'
+import {FiCalendar} from 'react-icons/fi'
+import {FiPhoneIncoming} from 'react-icons/fi'
+import {FiCodesandbox} from 'react-icons/fi'
+import {FiBarChart } from 'react-icons/fi'
+import {FiFile} from 'react-icons/fi'
+import {FiUserCheck} from 'react-icons/fi'
+import {FiPower } from 'react-icons/fi'
+
+
 export default function Header() {
   return (
-    <div className='grid lg:grid-cols-12 grid-cols-6 gap-3 py-3 bg-blue-200'>
+    <div className='grid lg:grid-cols-12 grid-cols-6 gap-3 py-2 bg-green-400'>
       <Link className='flex flex-col items-center' to='/'>
-        <img className='h-9' src={Dashboard} alt='logo' />
-        <p className='text-sm m-1'>Dashboard</p>
+        <button className='text-gray-700 p-1 hover:text-white'>
+              <FiHome className="w-8 h-8" />
+          </button>
+        <p className='text-sm font-semibold text-gray-700 m-1'>Dashboard</p>
       </Link>
       <Link className='flex flex-col items-center' to='/workforce'>
-        <img className='h-9' src={Workforce} alt='logo' />
-        <p className='text-sm m-1'>Workforce</p>
+        <button className='text-gray-700 p-1 hover:text-white'>
+              <FiUsers className="w-8 h-8" />
+          </button>
+        <p className='text-sm font-semibold text-gray-700 m-1'>Workforce</p>
       </Link>
       <Link className='flex flex-col items-center' to='/clients'>
-        <img className='h-9' src={Clients} alt='logo' />
-        <p className='text-sm m-1'>Clients</p>
+        <button className='text-gray-700 p-1 hover:text-white'>
+              <FiLayers className="w-8 h-8" />
+          </button>
+        <p className='text-sm font-semibold text-gray-700 m-1'>Clients</p>
       </Link>
       <Link className='flex flex-col items-center' to='/sites'>
-        <img className='h-9' src={Sites} alt='logo' />
-        <p className='text-sm m-1'>Sites</p>
+        <button className='text-gray-700 p-1 hover:text-white'>
+              <FiMap className="w-8 h-8" />
+          </button>
+        <p className='text-sm font-semibold text-gray-700 m-1'>Sites</p>
       </Link>
       <Link className='flex flex-col items-center' to='/roster'>
-        <img className='h-9' src={Roster} alt='logo' />
-        <p className='text-sm m-1'>Roster</p>
+        <button className='text-gray-700 p-1 hover:text-white'>
+              <FiCalendar className="w-8 h-8" />
+          </button>
+        <p className='text-sm font-semibold text-gray-700 m-1'>Roster</p>
       </Link>
       <Link className='flex flex-col items-center' to='/calls'>
-        <img className='h-9' src={Calls} alt='logo' />
-        <p className='text-sm m-1'>Calls</p>
+        <button className='text-gray-700 p-1 hover:text-white'>
+              <FiPhoneIncoming className="w-8 h-8" />
+          </button>
+        <p className='text-sm font-semibold text-gray-700 m-1'>Calls</p>
       </Link>
       <Link className='flex flex-col items-center' to='/events'>
-        <img className='h-9' src={Events} alt='logo' />
-        <p className='text-sm m-1'>Events</p>
+        <button className='text-gray-700 p-1 hover:text-white'>
+              <FiCodesandbox className="w-8 h-8" />
+          </button>
+        <p className='text-sm font-semibold text-gray-700 m-1'>Events</p>
       </Link>
       <Link className='flex flex-col items-center' to='/finance'>
-        <img className='h-9' src={Finance} alt='logo' />
-        <p className='text-sm m-1'>Finance</p>
+          <button className='text-gray-700 p-1 hover:text-white'>
+              <FiBarChart className="w-8 h-8" />
+          </button>
+        <p className='text-sm font-semibold text-gray-700 m-1'>Finance</p>
       </Link>
       <Link className='flex flex-col items-center' to='/reports'>
-        <img className='h-9' src={Reports} alt='logo' />
-        <p className='text-sm m-1'>Reports</p>
+      <button className='text-gray-700 p-1 hover:text-white'>
+          <FiFile className="w-8 h-8" />
+          </button>
+        <p className='text-sm font-semibold text-gray-700 m-1'>Reports</p>
       </Link>
       <Link className='flex flex-col items-center' to='/permissions'>
-        <img className='h-9' src={Permissions} alt='logo' />
-        <p className='text-sm m-1'>Permissions</p>
+          <button className='text-gray-700 p-1 hover:text-white'>
+              <FiUserCheck className="w-8 h-8" />
+          </button>
+          <p className='text-sm font-semibold text-gray-700 m-1'>Permissions</p>
       </Link>
       <Link className='flex flex-col items-center' to='/settings'>
-        <img className='h-9' src={Settings} alt='logo' />
-        <p className='text-sm m-1'>Settings</p>
+        <button className='text-gray-700 p-1 hover:text-white'>
+              <FiSettings className="w-8 h-8" />
+          </button>
+        <p className='text-sm font-semibold text-gray-700 m-1'>Settings</p>
       </Link>
       <Link className='flex flex-col items-center' to='/'>
-        <img className='h-9' src={Superadmin} alt='logo' />
-        <p className='text-sm m-1'>Superadmin</p>
+        <button className='text-gray-700 p-1 hover:text-white'>
+              <FiPower className="w-8 h-8" />
+          </button>        
+        <p className='text-sm font-semibold text-gray-700 m-1'>Superadmin</p>
       </Link>
     </div>
   )

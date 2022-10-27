@@ -7,6 +7,9 @@ import { ContentContext } from '../../context/ContentContext'
 import {collection, getDocs, setDoc, doc, query} from 'firebase/firestore'
 import {db} from '../../firebase'
 
+import {FiTrash} from 'react-icons/fi'
+import {FiEye} from 'react-icons/fi'
+
 
 export default function ListOfSites() {
         const {employees, posts, clientList, loading} = useContext(ContentContext)
@@ -52,10 +55,10 @@ export default function ListOfSites() {
                         <td className='text-sm text-left'>{client.contactEmail}</td>
                         <td className='text-sm text-left'>
                             <button className='bg-blue-400 text-white rounded p-1 m-1'>
-                              <img src='https://firebasestorage.googleapis.com/v0/b/securitymanagementapp.appspot.com/o/view.svg?alt=media&token=a9d40205-29d8-450b-8c66-74b385e83de1' alt="view" className="w-8 h-8 m-1" />
+                                <FiEye className="w-6 h-6 m-1" />
                             </button>
                             <button className='bg-red-400 text-white rounded p-1 m-1'>
-                              <img src='https://firebasestorage.googleapis.com/v0/b/securitymanagementapp.appspot.com/o/delete.svg?alt=media&token=cbfe3117-d6e8-473d-928f-695784f22097' alt="delete" className="w-8 h-8 m-1"/>
+                                <FiTrash className="w-6 h-6 m-1" />
                             </button>
                         </td>
                         </tr>
