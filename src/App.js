@@ -17,6 +17,7 @@ import Reports from './views/Reports';
 import Permissions from './views/Permissions';
 import Settings from './views/Settings'
 import ViewClient from './views/Clients/ViewClient';
+import Login from './views/Login';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Route path='/permissions' element={<Permissions />} />
         <Route path='/settings' element={<Settings />} />
         <Route path='/clients/:id' element={<ViewClient />} />
+        <Route path='/' element={<Login />} />
       </Routes>
 
   </BrowserRouter>
