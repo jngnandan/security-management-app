@@ -11,13 +11,13 @@ import {FiEye} from 'react-icons/fi'
 
 import {Link} from 'react-router-dom'
 
+import ClientItem from './ClientItem'
+
 export default function ListOfClients() {
       const {employees, posts, clientList, loading} = useContext(ContentContext)
       const [currentClients, setCurrentClients] = useState([])
       const [currentPage, setCurrentPage] = useState(3)
       const [tabState, setTabState] = useState('ListOfClients')
-
-    //   console.log(clientList)
 
   return (
     <div className="bg-gray-200 h-screen">
@@ -49,22 +49,7 @@ export default function ListOfClients() {
                     <button className='text-sm text-left font-semibold text-gray-700'>Actions</button>
                     </tr>
                     {clientList.slice(setCurrentClients, currentPage).map((client, index) => (
-                        <tr key={index} className="grid grid-cols-6 gap-3 text-sm items-center border border-1 py-3 mx-4 px-4 text-gray-800">
-                        <td className='text-sm text-left'>{client.clientName}</td>
-                        <td className='text-sm text-left col-span-2'>{client.clientAddress}</td>
-                        <td className='text-sm text-left'>{client.contactName}</td>
-                        <td className='text-sm text-left'>{client.contactEmail}</td>
-                        <td className='text-sm text-left'>
-                            <button className='bg-blue-400 hover:bg-blue-500 text-white rounded p-1 m-1'>
-                                <Link to={`/viewclient/${client.id}`}>
-                                <FiEye className="w-6 h-6 m-1" />
-                                </Link>
-                            </button>
-                            <button className='bg-red-400 hover:bg-red-500 text-white rounded p-1 m-1'>
-                                <FiTrash className="w-6 h-6 m-1" />
-                            </button>
-                        </td>
-                        </tr>
+                        <ClientItem key={index} client={client} />
                     ))}
                 </table>
             {/* Pagination */}
