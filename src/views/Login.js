@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useState, } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Outlet } from 'react-router-dom';
 
 
 import {collection, getDoc, setDoc, doc, query, getFirestore} from 'firebase/firestore'
@@ -45,6 +45,7 @@ export default function Login() {
 
     return (
         <div className="relative flex flex-col justify-center min-h-screen overflow-hidden">
+            <Outlet />
             <div className="w-full p-6 m-auto bg-white rounded-md shadow-xl lg:max-w-xl">
                 <h1 className="text-3xl font-semibold text-center text-gray-700">
                     Sign in
