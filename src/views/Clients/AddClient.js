@@ -67,7 +67,7 @@ export default function AddClient() {
       chargeRateSupervisor: chargeRateSupervisor,
       vat: vat,
     }
-    setDoc(doc(db, 'clients', clientName), newClient)
+    setDoc(doc(db, 'clients'), newClient)
     setClientName('')
     setClientAddress('')
     setContactPerson('')

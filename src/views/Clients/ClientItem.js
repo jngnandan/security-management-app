@@ -18,7 +18,7 @@ import { Oval } from 'react-loader-spinner'
 
 export default function ClientItem(props) {
     const {client, key, renderClient,} = props
-    const {id,clientName} = client
+    const {id, name, address, contact, email,} = client
 
     const {addClient, clientList} = useContext(ContentContext)
 
@@ -34,7 +34,7 @@ export default function ClientItem(props) {
     const addUserToFirebase = async () => {
         console.log(client)
         const db = getFirestore();
-        const dbRef = collection(db, "deletedClients", clientName);
+        const dbRef = collection(db, "deletedClients");
         const data = {
          id: client.id,   
         clientName: client.clientName,

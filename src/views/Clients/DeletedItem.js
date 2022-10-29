@@ -28,16 +28,16 @@ export default function DeltedItem(props) {
     const navigate = useNavigate()
 
         const deleteItem = async (id) => {
-        const dbRef = collection(db, "clients");
+        const dbRef = collection(db, "deletedClients");
         await deleteDoc(doc(dbRef, id))
-        window.location.reload(false);
+        // window.location.reload(false);
     }
 
     // clientName, clientEmail, contactFax, chargeRate, chargeRateSupervisor, clientAddress, contactNumber, contactEmail, contactName, invoiceTerms, paymentTerms, vat
     const addUserToFirebase = async () => {
         console.log(client)
         const db = getFirestore();
-        const dbRef = collection(db, "clients", clientName);
+        const dbRef = collection(db, "clients");
         const data = {
          id: client.id,   
         clientName: client.clientName,
@@ -56,10 +56,16 @@ export default function DeltedItem(props) {
         await setDoc(doc(dbRef), data);
         deleteItem(id)
     };
+
+            const deleteSeperate = async (id) => {
+        const dbRef = collection(db, "clients");
+        await deleteDoc(doc(dbRef, id))
+        window.location.reload(false);
+    }
     
     const deletePermanant = () => {
-        deleteItem(id)
-        // navigate('/clients')
+        deleteSeperate(id)
+        // console.log(client)
     }
 
 
@@ -75,7 +81,7 @@ export default function DeltedItem(props) {
                                 <MdRestore className="w-6 h-6 m-1" />
                                 {/* </Link> */}
                             </button>
-                            <button client={client} id={client.id} onClick={deletePermanant} className='bg-red-400 hover:bg-red-500 text-white rounded p-1 m-1'>
+                            <button id={client.id} onClick={deletePermanant} className='bg-red-400 hover:bg-red-500 text-white rounded p-1 m-1'>
                                 <FiTrash className="w-6 h-6 m-1" />
                             </button>
                         </td>
