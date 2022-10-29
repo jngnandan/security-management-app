@@ -81,9 +81,8 @@ export default function AddClient() {
     setChargeRate('')
     setChargeRateSupervisor('')
     setVat('')
-  
     setError('Successfully added client')
-    inputRef.current.value = ''
+    
   }
 
 

@@ -15,16 +15,19 @@ import { db } from '../../firebase'
 
 import { Oval } from 'react-loader-spinner'
 
+import {MdRestore} from 'react-icons/md'
 
-export default function ClientItem(props) {
+
+export default function DeltedItem(props) {
     const {client, key, renderClient,} = props
-    const {id,clientName} = client
+    const {id, clientName} = client
+    console.log(client)
 
     const {addClient, clientList} = useContext(ContentContext)
 
     const navigate = useNavigate()
 
-    const deleteItem = async (id) => {
+        const deleteItem = async (id) => {
         const dbRef = collection(db, "clients");
         await deleteDoc(doc(dbRef, id))
         window.location.reload(false);
@@ -34,7 +37,7 @@ export default function ClientItem(props) {
     const addUserToFirebase = async () => {
         console.log(client)
         const db = getFirestore();
-        const dbRef = collection(db, "deletedClients", clientName);
+        const dbRef = collection(db, "clients", clientName);
         const data = {
          id: client.id,   
         clientName: client.clientName,
@@ -54,8 +57,8 @@ export default function ClientItem(props) {
         deleteItem(id)
     };
     
-    const viewInfo = () => {
-        renderClient(id)
+    const deletePermanant = () => {
+        deleteItem(id)
         // navigate('/clients')
     }
 
@@ -67,12 +70,12 @@ export default function ClientItem(props) {
                         <td className='text-sm text-left'>{client.contactNumber}</td>
                         <td className='text-sm text-left'>{client.contactEmail}</td>
                         <td className='text-sm text-left flex flex-row'>
-                            <button onClick={viewInfo} id={client.id} className='bg-blue-400 hover:bg-blue-500 text-white rounded p-1 m-1'>
+                            <button onClick={addUserToFirebase} id={client.id} className='bg-blue-400 hover:bg-blue-500 text-white rounded p-1 m-1'>
                                 {/* <Link to={`/clients/${client.id}`}> */}
-                                <FiEye className="w-6 h-6 m-1" />
+                                <MdRestore className="w-6 h-6 m-1" />
                                 {/* </Link> */}
                             </button>
-                            <button client={client} id={client.id} onClick={addUserToFirebase} className='bg-red-400 hover:bg-red-500 text-white rounded p-1 m-1'>
+                            <button client={client} id={client.id} onClick={deletePermanant} className='bg-red-400 hover:bg-red-500 text-white rounded p-1 m-1'>
                                 <FiTrash className="w-6 h-6 m-1" />
                             </button>
                         </td>

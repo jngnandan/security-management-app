@@ -18,6 +18,7 @@ const ContentProvider = ({children}) => {
     const [posts, setPosts] = useState([])
     const [loading, setLoading] = useState(true)
     const [clientList, setClientList] = useState([])
+    const [deletedClients, setDeletedClients] = useState([])
 
     const [user, setUser] = useState(null)
     const [currentUser, setCurrentUser] = useState(null)
@@ -49,6 +50,24 @@ const ContentProvider = ({children}) => {
     }
     getClients()
 }, [])
+
+    useMemo(() => {
+    const getDeletedClients = async () => {
+        const querySnapshot = await getDocs(collection(db, 'deletedClients'))
+        const clients = querySnapshot.docs.map(doc => {
+            return {
+                id: doc.id,
+                ...doc.data()
+            }
+        }
+        )
+        setDeletedClients(clients)
+        setLoading(false)
+    }
+    getDeletedClients()
+}, [])
+
+
 
 
     const addUserToFirebase = async user => {
@@ -87,7 +106,7 @@ const ContentProvider = ({children}) => {
 
 
 return(
-    <ContentContext.Provider value={{employees, posts, loading, clientList, addClient,}}>
+    <ContentContext.Provider value={{employees, posts, loading, clientList, addClient, deletedClients}}>
         {children}
     </ContentContext.Provider>
 )
