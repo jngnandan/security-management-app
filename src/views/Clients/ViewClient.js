@@ -26,17 +26,25 @@ function ViewClient() {
     const {pathname} = useLocation()
     const id = pathname.split('/')[2]
     const client = clientList.find(client => client.id === id)
-    const {name, clientName, clientAddress, contactName, contactEmail} = client
+    const {clientName, clientEmail, contactFax, chargeRate, chargeRateSupervisor, clientAddress, contactNumber, contactEmail, contactName, invoiceTerms, paymentTerms, vat} = client
+    console.log(client)
 
   return (
     <div>
       {client ? (
         <div className="flex flex-col justify-center items-center">
-          <h1 className="text-2xl font-bold">{name}</h1>
+          <h1 className="text-2xl font-bold">{clientName}</h1>
           <p className="text-xl font-medium">{clientName}</p>
           <p className="text-xl font-medium">{clientAddress}</p>
           <p className="text-xl font-medium">{contactName}</p>
           <p className="text-xl font-medium">{contactEmail}</p>
+          <p className="text-xl font-medium">{contactNumber}</p>
+          <p className="text-xl font-medium">{contactFax}</p>
+          <p className="text-xl font-medium">{invoiceTerms}</p>
+          <p className="text-xl font-medium">{paymentTerms}</p>
+          <p className="text-xl font-medium">{chargeRate}</p>
+          <p className="text-xl font-medium">{chargeRateSupervisor}</p>
+          <p className="text-xl font-medium">{vat}</p>
         </div>
       ) : (
         <div className="flex flex-col justify-center items-center">

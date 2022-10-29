@@ -3,12 +3,13 @@
 import {createContext, useEffect, useState, useContext, useMemo} from 'react'
 import { useNavigate, Navigate, Outlet } from 'react-router-dom';
 
-import {collection, getDocs, setDoc, doc, query, getFirestore, deleteDoc} from 'firebase/firestore'
-import {db} from '../firebase'
+import {collection, getDocs, setDoc, doc, query, getFirestore, deleteDoc,} from 'firebase/firestore'
+import {db,} from '../firebase'
 import {getAuth} from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
 import { signInWithPopup } from 'firebase/auth'
 
+import firebase from 'firebase/compat/app'; //v9
 
 const ContentContext = createContext();
 
@@ -70,15 +71,7 @@ const ContentProvider = ({children}) => {
         addUserToFirebase(user)
         setCurrentUser(user)
     }
-
-    const deleteClient = async (id) => {
-        // const db = getFirestore();
-        // const dbRef = doc(db, "clients", id);
-        // await deleteDoc(dbRef);
-        const db = getFirestore();
-        const dbRef = doc(db, "clients", id);
-        await deleteDoc(dbRef);
-    }
+ 
 
     const addClient = async (client) => {
        console.log(client)
@@ -94,7 +87,7 @@ const ContentProvider = ({children}) => {
 
 
 return(
-    <ContentContext.Provider value={{employees, posts, loading, clientList, deleteClient, addClient}}>
+    <ContentContext.Provider value={{employees, posts, loading, clientList, addClient,}}>
         {children}
     </ContentContext.Provider>
 )

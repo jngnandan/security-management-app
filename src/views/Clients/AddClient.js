@@ -1,7 +1,7 @@
 
 import React from 'react'
-import { useContext, useState, useEffect, } from 'react'
-import { Navigate,} from 'react-router-dom'
+import { useContext, useState, useEffect,} from 'react'
+import { useNavigate,} from 'react-router-dom'
 
 import { useRef } from 'react'
 
@@ -10,6 +10,7 @@ import {db} from '../../firebase'
 
 
 export default function AddClient() {
+  const inputRef = useRef()
 
   const [clientName, setClientName] = useState('')
   const [clientAddress, setClientAddress] = useState('')
@@ -27,47 +28,10 @@ export default function AddClient() {
 
   const [clientList, setClientList] = useState([])
 
+  const [error, setError] = useState(null)
 
-  const addClient = (e) => {
-    e.preventDefault()
-    setClientList([
-      ...clientList,
-      {
-        clientName: clientName,
-        clientAddress: clientAddress,
-        contactPerson: contactPerson,
-        contactNumber: contactNumber,
-        contactFax: contactFax,
-        contactEmail: contactEmail,
-        invoiceTerms: invoiceTerms,
-        paymentTerms: paymentTerms,
-        contractStartDate: contractStartDate,
-        contractEndDate: contractEndDate,
-        chargeRate: chargeRate,
-        chargeRateSupervisor: chargeRateSupervisor,
-        vat: vat,
-      },
-    ])
-    setClientName('')
-    setClientAddress('')
-    setContactPerson('')
-    setContactNumber('')
-    setContactFax('')
-    setContactEmail('')
-    setInvoiceTerms('')
-    setPaymentTerms('')
-    setContractStartDate('')
-    setContractEndDate('')
-    setChargeRate('')
-    setChargeRateSupervisor('')
-    setVat('')
-  //   inputs.forEach(input => {
-  //   input.value = '';
-  // });
+  const navigate = useNavigate()
 
-
-
-  }
 
   const cancelClient = (e) => {
     e.preventDefault()
@@ -117,20 +81,16 @@ export default function AddClient() {
     setChargeRate('')
     setChargeRateSupervisor('')
     setVat('')
-    
-    Navigate('/clients')
+  
+    setError('Successfully added client')
+    inputRef.current.value = ''
   }
-
-
-
-  console.log(clientList)
-
 
 
   return (
     <div className="p-4 w-screen pr-8">
       <h1 className='text-2xl text-gray-800'>Add New Client</h1>
-      <form onSubmit={handleSubmit} className='grid grid-cols-2 gap-y-4 mt-6'>
+      <form ref={inputRef} onSubmit={handleSubmit} className='grid grid-cols-2 gap-y-4 mt-6'>
         <div className="flex flex-col">
           <label className='font-semibold text-gray-800 text-sm pb-1' htmlFor="name">Name</label>
           <input onChange={(e) => setClientName(e.target.value)} className='border rounded pl-3 py-2 placeholder:text-sm w-4/5' type="text" name="name" id="name" placeholder='Client Name' />
@@ -174,7 +134,7 @@ export default function AddClient() {
 
         <div className="flex flex-col">
           <label className='font-semibold text-gray-800 text-sm pb-1' htmlFor="date">Contact End</label>
-          <input onChange={(e) => setContractStartDate(e.target.value)} className='border rounded pl-3 py-2 placeholder:text-sm w-4/5' type="date" name="date" id="name" placeholder='' />
+          <input onChange={(e) => setContractEndDate(e.target.value)} className='border rounded pl-3 py-2 placeholder:text-sm w-4/5' type="date" name="date" id="name" placeholder='' />
         </div>
 
         <div className="flex flex-col">
@@ -203,14 +163,12 @@ export default function AddClient() {
           <label onChange={(e) => setVat(e.target.value)} className='text-gray-800 text-sm p-1 pt-1.5 pl-2'  htmlFor="charge">VAT Registered</label>
         </div>
 
-        <div className="flex flex-row justify-start grid-span-2 mt-6">
+        <div className="flex flex-row justify-start grid-span-2 mt-3">
         <button onSubmit={cancelClient}  className='border border-gray-500 text-gray-700 px-4 py-2 rounded'>Cancel</button>
         <button onSubmit={handleSubmit} className='bg-green-500 text-white px-4 py-2 rounded ml-2'>Save</button>
       </div>
       </form>
-
-
-
+      <p className="my-4">{error}</p>
     </div>
   )
 }
