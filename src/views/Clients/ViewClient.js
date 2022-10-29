@@ -32,8 +32,11 @@ function ViewClient() {
   return (
     <div>
       {client ? (
-        <div className="flex flex-col justify-center items-center">
-          <h1 className="text-2xl font-bold">{clientName}</h1>
+        <div className="flex flex-col justify-start items-start ">
+          <div className="flex flex-row">
+            <h1 className="text-2xl font-medium text-gray-800">Client Details</h1> 
+          <h1 className="text-2xl">{clientName}</h1>
+          </div>
           <p className="text-xl font-medium">{clientName}</p>
           <p className="text-xl font-medium">{clientAddress}</p>
           <p className="text-xl font-medium">{contactName}</p>

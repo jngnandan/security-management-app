@@ -12,6 +12,8 @@ import {FiEye} from 'react-icons/fi'
 import {Link} from 'react-router-dom'
 
 import ClientItem from './ClientItem'
+import { Oval } from 'react-loader-spinner'
+import {BsFillXCircleFill} from 'react-icons/bs'
 
 export default function ListOfClients() {
       const {employees, posts, clientList, loading,} = useContext(ContentContext)
@@ -19,9 +21,46 @@ export default function ListOfClients() {
       const [currentPage, setCurrentPage] = useState(10)
       const [tabState, setTabState] = useState('ListOfClients')
 
+      const [clientDetails, setClientDetails] = useState(null)
+
+      const renderClient = async (id) => {
+            const findClient = await clientList.find(client => client.id === id)
+            setClientDetails(findClient)
+      }
+
   return (
     <div className="bg-gray-200 h-screen">
-      <div className="card shadow bg-white w-screen">
+      {clientDetails ? (
+        <div className="card shadow bg-white w-screen card py-8">
+            <div className="flex flex-row justify-end w-11/12 p-8">
+                <BsFillXCircleFill className='w-12 h-12 m-1 text-gray-500 hover:text-gray-900' onClick={() => setClientDetails(null)} />
+            </div>
+            {clientDetails ? (
+                <div className="flex flex-col items-start justify-start py-8">
+                    <div className="flex flex-row justify-start w-54 mt-4">
+                        <p>Client Name</p>
+                    <p className="pl-6">{clientDetails.clientName}</p>
+                    </div>
+                    <div className="flex flex-row justify-start w-54 mt-4">
+                        <p>Client Address</p>
+                    <p className="pl-6">{clientDetails.clientAddress}</p>
+                    </div>
+                    <div className="flex flex-row justify-start w-54 mt-4">
+                        <p>Contact Number</p>
+                    <p className="pl-6">{clientDetails.contactNumber}</p>
+                    </div>
+                    <div className="flex flex-row justify-start w-54 mt-4">
+                        <p>Contact Email</p>
+                    <p className="pl-6">{clientDetails.contactEmail}</p>
+                    </div>
+                </div>
+            ) : (
+                <>
+                </>
+            )}
+        </div>)
+        : (  
+            <div className="card shadow bg-white w-screen">
             <p className='pt-3 pl-3 pb-1 text-xl font-semibold text-gray-500'>Current Clients</p>
         <div className='flex flex-row justify-start mb-1'>
             <div className="flex flex-row items-center mx-4">
@@ -49,7 +88,7 @@ export default function ListOfClients() {
                     <button className='text-sm text-left font-semibold text-gray-700'>Actions</button>
                     </tr>
                     {clientList.slice(setCurrentClients, currentPage).map((client, index) => (
-                        <ClientItem key={index} client={client} />
+                        <ClientItem key={index} client={client} renderClient={renderClient}/>
                     ))}
                                 {/* Pagination */}
             <div className="flex flex-row justify-between items-center mx-4 my-3">   
@@ -74,7 +113,8 @@ export default function ListOfClients() {
                 </div>
                 </table>
 
-        </div>
+        </div>)}
+      
     </div>
   )
 }
