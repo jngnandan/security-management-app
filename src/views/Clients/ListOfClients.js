@@ -28,31 +28,77 @@ export default function ListOfClients() {
             setClientDetails(findClient)
       }
 
+
   return (
-    <div className="bg-gray-200 h-screen">
+    <div className="bg-gray-200 w-screen">
       {clientDetails ? (
-        <div className="card shadow bg-white w-screen card py-8">
-            <div className="flex flex-row justify-end w-11/12 p-8">
-                <BsFillXCircleFill className='w-12 h-12 m-1 text-gray-500 hover:text-gray-900' onClick={() => setClientDetails(null)} />
+        <div className="card shadow w-10/12 card">
+            <div className="flex flex-row justify-end">
+                <BsFillXCircleFill className='w-8 h-8 m-4 mt-8 text-gray-500 hover:text-gray-900' onClick={() => setClientDetails(null)} />
+            </div>
+            <div>
+                <h1 className="text-2xl text-center font-bold text-gray-900">Client Details</h1>
             </div>
             {clientDetails ? (
-                <div className="flex flex-col items-start justify-start py-8">
-                    <div className="flex flex-row justify-start w-54 mt-4">
-                        <p>Client Name</p>
-                    <p className="pl-6">{clientDetails.clientName}</p>
+                <div>
+                <div className="flex flex-col items-start justify-start pl-16">
+                    <div className="flex flex-row justify-start items-center w-54 m-1">
+                        <p className="text-sm font-semibold text-gray-700">Client Name:</p>
+                    <p className="m-2 w-54 text-sm">{clientDetails.clientName}</p>
                     </div>
-                    <div className="flex flex-row justify-start w-54 mt-4">
-                        <p>Client Address</p>
-                    <p className="pl-6">{clientDetails.clientAddress}</p>
+                    <div className="flex flex-row justify-start items-center w-54 m-1">
+                        <p className="text-sm font-semibold text-gray-700">Client Address:</p>
+                    <p className="m-2 w-54 text-sm">{clientDetails.clientAddress}</p>
                     </div>
-                    <div className="flex flex-row justify-start w-54 mt-4">
-                        <p>Contact Number</p>
-                    <p className="pl-6">{clientDetails.contactNumber}</p>
+                    <div className="flex flex-row justify-start items-center w-54 m-1">
+                        <p className="text-sm font-semibold text-gray-700">Contact Person:</p>
+                    <p className="m-2 w-54 text-sm">{clientDetails.contactPerson}</p>
                     </div>
-                    <div className="flex flex-row justify-start w-54 mt-4">
-                        <p>Contact Email</p>
-                    <p className="pl-6">{clientDetails.contactEmail}</p>
+                    <div className="flex flex-row justify-start items-center w-54 m-1">
+                        <p className="text-sm font-semibold text-gray-700">Contact Number</p>
+                    <p className="m-2 w-54 text-sm">{clientDetails.contactNumber}</p>
                     </div>
+                    <div className="flex flex-row justify-start items-center w-54 m-1">
+                        <p className="text-sm font-semibold text-gray-700">Contact Email</p>
+                    <p className="m-2 w-54 text-sm">{clientDetails.contactEmail}</p>
+                    </div>
+                    <div className="flex flex-row justify-start items-center w-54 m-1">
+                        <p className="text-sm font-semibold text-gray-700">Invoice Terms</p>
+                    <p className="m-2 w-54 text-sm">{clientDetails.invoiceTerms}</p>
+                    </div>
+                    <div className="flex flex-row justify-start items-center w-54 m-1">
+                        <p className="text-sm font-semibold text-gray-700">Payment Terms</p>
+                    <p className="m-2 w-54 text-sm">{clientDetails.paymentTerms}</p>
+                    </div>
+                    <div className="flex flex-row justify-start items-center w-54 m-1">
+                        <p className="text-sm font-semibold text-gray-700">VAT</p>
+                    <p className="m-2 w-54 text-sm">{clientDetails.vat}</p>
+                    </div>
+                    <div className="flex flex-row justify-start items-center w-54 m-1">
+                        <p className="text-sm font-semibold text-gray-700">Charge Rate</p>
+                    <p className="m-2 w-54 text-sm">{clientDetails.chargeRate}</p>
+                    </div>
+                    <div className="flex flex-row justify-start items-center w-54 m-1">
+                        <p className="text-sm font-semibold text-gray-700">Charge Rate Supervisor</p>
+                    <p className="m-2 w-54 text-sm">{clientDetails.chargeRateSupervisor}</p>
+                    </div>
+                    <div className="flex flex-row justify-start items-center w-54 m-1">
+                        <p className="text-sm font-semibold text-gray-700">Contract Start</p>
+                    <p className="m-2 w-54 text-sm">{clientDetails.contractStartDate}</p>
+                    </div>
+                    <div className="flex flex-row justify-start items-center w-54 m-1">
+                        <p className="text-sm font-semibold text-gray-700">Contract End</p>
+                    <p className="m-2 w-54 text-sm">{clientDetails.contractEndDate}</p>
+                    </div>
+                </div>
+
+                <div>
+                    <h1 className="text-2xl text-center font-bold text-gray-900">Site Group</h1>
+
+
+                </div>
+
+
                 </div>
             ) : (
                 <>
