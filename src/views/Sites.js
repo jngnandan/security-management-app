@@ -3,8 +3,8 @@ import React from 'react'
 import { useContext, useState, useEffect } from 'react'
 import { ContentContext } from '../context/ContentContext'
 import { Oval } from 'react-loader-spinner'
-import {useNavigate} from 'react-router-dom'
 
+import {useNavigate} from 'react-router-dom'
 import {getAuth} from "firebase/auth";
 
 import view from '../assets/icons/view.svg'
@@ -12,25 +12,28 @@ import deleteItem from '../assets/icons/delete.svg'
 import add from '../assets/icons/add.svg'
 import list from '../assets/icons/list.svg'
 
-
-import AddSites from '../views/Sites/AddSites'
+import AddClient from '../views/Clients/AddClient'
 import ListOfSites from '../views/Sites/ListOfSites'
-import DeletedSites from '../views/Sites/DeletedSites'
+import DeletedClients from '../views/Clients/DeletedClients'
+
+import {FiPlusCircle} from 'react-icons/fi'
+import {FiList} from 'react-icons/fi'
+import {FiTrash} from 'react-icons/fi'
 
 const tabsList = [
-  { tabId: 'AddSite', displayText: 'Add Sites' },
+  { tabId: 'AddClient', displayText: 'Add Client' },
   { tabId: 'ListOfSites', displayText: 'List of Sites' },
-  { tabId: 'DeletedSites', displayText: 'Deleted Sites' },
+  { tabId: 'Deleted Clients', displayText: 'Deleted Clients' },
 ]
 
 
 export default function Sites() {
-      const {employees, posts, clientList, loading,user} = useContext(ContentContext)
+      const {employees, posts, clientList, loading, user} = useContext(ContentContext)
       const [currentClients, setCurrentClients] = useState([])
       const [currentPage, setCurrentPage] = useState(3)
       const [tabState, setTabState] = useState('ListOfSites')
 
-      const navigate = useNavigate()
+          const navigate = useNavigate()
 
         useEffect(() => {
        getAuth().onAuthStateChanged((user) => {
@@ -52,25 +55,25 @@ export default function Sites() {
     ) : (
       <div className='flex flex-row w-screen mr-4'>
         {/* Seperate Column */}
-        <div className="bg-gray-400">
+        <div className="bg-gray-400 h-screen">
         {tabsList.map((tab) => (
           <button 
             key={tab.tabId}
-            className={`rounded-none text-white rounded w-24 h-24 flex flex-col justify-center items-center ${tabState === tab.tabId ? 'bg-gray-200' : 'bg-gray-400'}`}
+            className={`rounded-none text-gray-700 focus:text-gray-400 rounded w-24 h-24 flex flex-col justify-center items-center ${tabState === tab.tabId ? 'bg-gray-200' : 'bg-gray-400'}`}
             onClick={() => setTabState(tab.tabId)}
           >
-            <img src={tab.tabId === 'AddSite' ? add : tab.tabId === 'ListOfSites' ? list : deleteItem} alt="delete" className="w-8 h-8 m-1"/>
-            <p className='text-xs text-gray-800'>{tab.displayText}</p>
+            {/* <img src={tab.tabId === 'AddClient' ? add : tab.tabId === 'ListOfSites' ? list : deleteItem} alt="delete" className="w-8 h-8 m-1"/> */}
+            {tab.tabId === 'AddClient' ? <FiPlusCircle className="w-8 h-8 m-1"/> : tab.tabId === 'ListOfSites' ? <FiList className="w-8 h-8 m-1"/> : <FiTrash className="w-8 h-8 m-1"/>}
+            <p className='text-sm font-medium pt-1'>{tab.displayText}</p>
           </button>
         ))}
         </div>
 
-
         {/* Main Column */}
       <div className="mr-8">
-        {tabState === 'AddSite' && <AddSites />}
+        {tabState === 'AddClient' && <AddClient />}
         {tabState === 'ListOfSites' && <ListOfSites />}
-        {tabState === 'DeletedSites' && <DeletedSites />}
+        {tabState === 'Deleted Clients' && <DeletedClients />}
       </div>
       </div>
 

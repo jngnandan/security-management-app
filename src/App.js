@@ -16,7 +16,6 @@ import Finance from './views/Finance';
 import Reports from './views/Reports';
 import Permissions from './views/Permissions';
 import Settings from './views/Settings'
-import ViewClient from './views/Clients/ViewClient';
 import Login from './views/Login';
 import SuperAdmin from './views/SuperAdmin'
 
@@ -36,7 +35,6 @@ function App() {
         <Route path='/reports' element={<Reports />} />
         <Route path='/permissions' element={<Permissions />} />
         <Route path='/settings' element={<Settings />} />
-        <Route path='/clients/:id' element={<ViewClient />} />
         <Route path='/' element={<Login />} />
         <Route path='/superadmin' element={<SuperAdmin />} />
       </Routes>

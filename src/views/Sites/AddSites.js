@@ -1,15 +1,18 @@
 
 import React from 'react'
-import { useContext, useState, useEffect, } from 'react'
-import { Navigate } from 'react-router-dom'
+import { useContext, useState, useEffect,} from 'react'
+import { useNavigate,} from 'react-router-dom'
+
+import { useRef } from 'react'
 
 import {collection, getDocs, setDoc, doc, query} from 'firebase/firestore'
 import {db} from '../../firebase'
 
 
 export default function AddSites() {
+  const inputRef = useRef()
 
-  const [clientName, setClientName] = useState('')
+  const [siteName, setSiteName] = useState('')
   const [clientAddress, setClientAddress] = useState('')
   const [contactPerson, setContactPerson] = useState('')
   const [contactNumber, setContactNumber] = useState('')
@@ -25,51 +28,13 @@ export default function AddSites() {
 
   const [clientList, setClientList] = useState([])
 
+  const [error, setError] = useState(null)
 
-  const addClient = (e) => {
-    e.preventDefault()
-    setClientList([
-      ...clientList,
-      {
-        clientName: clientName,
-        clientAddress: clientAddress,
-        contactPerson: contactPerson,
-        contactNumber: contactNumber,
-        contactFax: contactFax,
-        contactEmail: contactEmail,
-        invoiceTerms: invoiceTerms,
-        paymentTerms: paymentTerms,
-        contractStartDate: contractStartDate,
-        contractEndDate: contractEndDate,
-        chargeRate: chargeRate,
-        chargeRateSupervisor: chargeRateSupervisor,
-        vat: vat,
-      },
-    ])
-    setClientName('')
-    setClientAddress('')
-    setContactPerson('')
-    setContactNumber('')
-    setContactFax('')
-    setContactEmail('')
-    setInvoiceTerms('')
-    setPaymentTerms('')
-    setContractStartDate('')
-    setContractEndDate('')
-    setChargeRate('')
-    setChargeRateSupervisor('')
-    setVat('')
-  //   inputs.forEach(input => {
-  //   input.value = '';
-  // });
-
-
-
-  }
+  const navigate = useNavigate()
 
   const cancelClient = (e) => {
     e.preventDefault()
-    setClientName('')
+    setSiteName('')
     setClientAddress('')
     setContactPerson('')
     setContactNumber('')
@@ -87,7 +52,7 @@ export default function AddSites() {
   const handleSubmit = (e) => {
     e.preventDefault()
     const newClient = {
-      clientName: clientName,
+      siteName: siteName,
       clientAddress: clientAddress,
       contactPerson: contactPerson,
       contactNumber: contactNumber,
@@ -101,8 +66,8 @@ export default function AddSites() {
       chargeRateSupervisor: chargeRateSupervisor,
       vat: vat,
     }
-    setDoc(doc(db, 'clients', clientName), newClient)
-    setClientName('')
+    setDoc(doc(db, 'clients'), newClient)
+    setSiteName('')
     setClientAddress('')
     setContactPerson('')
     setContactNumber('')
@@ -115,28 +80,22 @@ export default function AddSites() {
     setChargeRate('')
     setChargeRateSupervisor('')
     setVat('')
-    
-    Navigate('/clients')
+    setError('Successfully added client') 
   }
-
-
-
-  console.log(clientList)
-
 
 
   return (
     <div className="p-4 w-screen pr-8">
       <h1 className='text-2xl text-gray-800'>Add New Client</h1>
-      <form onSubmit={handleSubmit} className='grid grid-cols-2 gap-y-4 mt-6'>
+      <form ref={inputRef} onSubmit={handleSubmit} className='grid grid-cols-2 gap-y-4 mt-6'>
         <div className="flex flex-col">
           <label className='font-semibold text-gray-800 text-sm pb-1' htmlFor="name">Name</label>
-          <input onChange={(e) => setClientName(e.target.value)} className='border rounded pl-3 py-2 placeholder:text-sm w-4/5' type="text" name="name" id="name" placeholder='Client Name' />
+          <input onChange={(e) => setSiteName(e.target.value)} className='border rounded pl-3 py-2 placeholder:text-sm w-4/5' type="text" name="name" id="name" placeholder='Client Name' />
         </div>
         
           <div className="flex flex-col">
           <label className='font-semibold text-gray-800 text-sm pb-1'  htmlFor="address">Invoice terms</label>
-        <select onChange={(e) => setInvoiceTerms(e.target.value)} className='h-10 border rounded pl-3 placeholder:font-sm w-4/5' name="type" id="type">
+          <select onChange={(e) => setInvoiceTerms(e.target.value)} className='h-10 border rounded pl-3 placeholder:font-sm w-4/5' name="type" id="type">
           <option selected className="text-gray-500" value="select">Select Invoice Term</option>
           <option className="text-gray-500" value='weekly'>Weekly Invoice</option>
           <option className="text-gray-500" value="fortnightly">Fortnightly Invoice</option>
@@ -172,7 +131,7 @@ export default function AddSites() {
 
         <div className="flex flex-col">
           <label className='font-semibold text-gray-800 text-sm pb-1' htmlFor="date">Contact End</label>
-          <input onChange={(e) => setContractStartDate(e.target.value)} className='border rounded pl-3 py-2 placeholder:text-sm w-4/5' type="date" name="date" id="name" placeholder='' />
+          <input onChange={(e) => setContractEndDate(e.target.value)} className='border rounded pl-3 py-2 placeholder:text-sm w-4/5' type="date" name="date" id="name" placeholder='' />
         </div>
 
         <div className="flex flex-col">
@@ -201,14 +160,12 @@ export default function AddSites() {
           <label onChange={(e) => setVat(e.target.value)} className='text-gray-800 text-sm p-1 pt-1.5 pl-2'  htmlFor="charge">VAT Registered</label>
         </div>
 
-        <div className="flex flex-row justify-start grid-span-2 mt-6">
+        <div className="flex flex-row justify-start grid-span-2 mt-3">
         <button onSubmit={cancelClient}  className='border border-gray-500 text-gray-700 px-4 py-2 rounded'>Cancel</button>
         <button onSubmit={handleSubmit} className='bg-green-500 text-white px-4 py-2 rounded ml-2'>Save</button>
       </div>
       </form>
-
-
-
+      <p className="my-4">{error}</p>
     </div>
   )
 }
