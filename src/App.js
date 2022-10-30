@@ -18,6 +18,7 @@ import Permissions from './views/Permissions';
 import Settings from './views/Settings'
 import ViewClient from './views/Clients/ViewClient';
 import Login from './views/Login';
+import SuperAdmin from './views/SuperAdmin'
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
         <Route path='/settings' element={<Settings />} />
         <Route path='/clients/:id' element={<ViewClient />} />
         <Route path='/' element={<Login />} />
+        <Route path='/superadmin' element={<SuperAdmin />} />
       </Routes>
 
   </BrowserRouter>

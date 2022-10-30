@@ -1,8 +1,30 @@
 
 import React from 'react'
 
+import { useContext, useState, useEffect,} from 'react'
+import { useNavigate,} from 'react-router-dom'
+
+import {getAuth} from "firebase/auth";
+
+import { ContentContext } from '../context/ContentContext';
+
 export default function SuperAdmin() {
+  const {user} = useContext(ContentContext)
+
+    const signOut = () => {
+        const auth = getAuth();
+        auth.signOut().then(() => {
+            // Sign-out successful.
+            console.log('signed out')
+        }).catch((error) => {
+            // An error happened.
+            console.log(error)
+        });
+    }
+
   return (
-    <div>SuperAdmin</div>
+    <div>
+      <button onClick={signOut}>Log out</button>
+    </div>
   )
 }

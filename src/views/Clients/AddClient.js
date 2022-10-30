@@ -32,7 +32,6 @@ export default function AddClient() {
 
   const navigate = useNavigate()
 
-
   const cancelClient = (e) => {
     e.preventDefault()
     setClientName('')
@@ -81,8 +80,7 @@ export default function AddClient() {
     setChargeRate('')
     setChargeRateSupervisor('')
     setVat('')
-    setError('Successfully added client')
-    
+    setError('Successfully added client') 
   }
 
 
@@ -97,7 +95,7 @@ export default function AddClient() {
         
           <div className="flex flex-col">
           <label className='font-semibold text-gray-800 text-sm pb-1'  htmlFor="address">Invoice terms</label>
-        <select onChange={(e) => setInvoiceTerms(e.target.value)} className='h-10 border rounded pl-3 placeholder:font-sm w-4/5' name="type" id="type">
+          <select onChange={(e) => setInvoiceTerms(e.target.value)} className='h-10 border rounded pl-3 placeholder:font-sm w-4/5' name="type" id="type">
           <option selected className="text-gray-500" value="select">Select Invoice Term</option>
           <option className="text-gray-500" value='weekly'>Weekly Invoice</option>
           <option className="text-gray-500" value="fortnightly">Fortnightly Invoice</option>

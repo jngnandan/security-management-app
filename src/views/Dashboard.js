@@ -5,6 +5,7 @@ import clientsDashboard from '../assets/icons/clients-dashboard.svg'
 
 import { useContext, useState } from 'react'
 import { ContentContext } from '../context/ContentContext'
+import { useNavigate } from 'react-router-dom'
 
 import { Oval } from 'react-loader-spinner'
 
@@ -18,6 +19,8 @@ import PieChart from './Dashboard/PieChart'
 import {FaUserFriends} from 'react-icons/fa'
 import {FaThList} from 'react-icons/fa'
 import {FaStream} from 'react-icons/fa'
+
+import {getAuth} from "firebase/auth";
 
 
 const activeWork = [
@@ -47,9 +50,21 @@ const activeWork = [
 
 
 export default function Dashboard() {
-    const {employees, posts, loading} = useContext(ContentContext)
+    const {employees, posts, loading,} = useContext(ContentContext)
     const [employeeList, setEmployeeList] = useState([])
     const [expiredList, setExpiredList] = useState([])
+        const navigate = useNavigate()
+useEffect(() => {
+    getAuth().onAuthStateChanged((user) => {
+        if (user) {
+            console.log(user)
+        } else {
+            console.log('no user')
+            navigate('/')
+        }
+    })
+}, [])
+
 
     useEffect(() => {
     const filterActive = employees.filter(eachitem => eachitem.status.includes('Active'))
@@ -65,6 +80,8 @@ export default function Dashboard() {
     const [currenShiftsStart, setCurrentShiftsStart] = useState(0)
     const [currentSearchQuery, setCurrentSearchQuery] = useState('')
     const [currentSearchResults, setCurrentSearchResults] = useState([])
+
+
 
 
   return (

@@ -1,11 +1,11 @@
 
 
 import {createContext, useEffect, useState, useContext, useMemo} from 'react'
-import { useNavigate, Navigate, Outlet } from 'react-router-dom';
+import { useNavigate, Outlet } from 'react-router-dom';
 
 import {collection, getDocs, setDoc, doc, query, getFirestore, deleteDoc,} from 'firebase/firestore'
 import {db,} from '../firebase'
-import {getAuth} from "firebase/auth";
+import {getAuth, signInWithEmailAndPassword} from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
 import { signInWithPopup } from 'firebase/auth'
 
@@ -13,27 +13,22 @@ import firebase from 'firebase/compat/app'; //v9
 
 const ContentContext = createContext();
 
+
+
 const ContentProvider = ({children}) => {
     const [employees, setEmplyees] = useState([])
-    const [posts, setPosts] = useState([])
     const [loading, setLoading] = useState(true)
     const [clientList, setClientList] = useState([])
     const [deletedClients, setDeletedClients] = useState([])
+    const [error, setError] = useState(null)
 
     const [user, setUser] = useState(null)
+    // const[uid, setUid] = useState(null)
     const [currentUser, setCurrentUser] = useState(null)
+        // const navigate = useNavigate()
 
-    console.log(clientList)
 
-    useMemo(() => {
-    const getUsers = async () => {
-        const querySnapshot = await getDocs(collection(db, 'employees'))
-        const users = querySnapshot.docs.map(doc => doc.data())
-        setEmplyees(users)
-        setLoading(false)
-    } 
-    getUsers()  
-}, [])
+    const auth = getAuth();
 
     useMemo(() => {
     const getClients = async () => {
@@ -66,47 +61,31 @@ const ContentProvider = ({children}) => {
     }
     getDeletedClients()
 }, [])
-
-
-
-
-    const addUserToFirebase = async user => {
-        const db = getFirestore();
-        const dbRef = collection(db, "users");
-        const data = {
-       email: user.email,
-        name: user.displayName,
-        image: user.photoURL,
-    };
-        await setDoc(doc(dbRef, user.email), data);
-    };
-
-    const signIn = async () => {
-        const auth = getAuth();
-        const provider = new GoogleAuthProvider();
-        const result = await signInWithPopup(auth, provider);
-        const user = result.user;
-        setUser(user)
-        addUserToFirebase(user)
-        setCurrentUser(user)
-    }
- 
-
-    const addClient = async (client) => {
-       console.log(client)
-        const db = getFirestore();
-        const dbRef = collection(db, "deletedClients");
-        const data = {
-            clientName: client.clientName,
-            contactEmail: client.contactEmail,
-    }
-        await setDoc(doc(dbRef, client.clientName), data);
-    }
     
+
+    const signIn = async (email, password) => {
+        const auth = getAuth();
+        try {
+            const userCredential = await signInWithEmailAndPassword(auth, email, password)
+            const user = userCredential.user;
+            setUser(user)
+            return user
+            
+        }   catch (error) {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode, errorMessage)
+            setUser(null)
+            setError(errorMessage)
+        }
+    }
+
+
+
 
 
 return(
-    <ContentContext.Provider value={{employees, posts, loading, clientList, addClient, deletedClients}}>
+    <ContentContext.Provider value={{employees, loading, clientList, deletedClients, signIn, user}}>
         {children}
     </ContentContext.Provider>
 )
