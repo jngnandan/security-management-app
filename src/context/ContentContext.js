@@ -3,7 +3,7 @@
 import {createContext, useEffect, useState, useContext, useMemo} from 'react'
 import { useNavigate, Outlet } from 'react-router-dom';
 
-import {collection, getDocs, setDoc, doc, query, getFirestore, deleteDoc,} from 'firebase/firestore'
+import {collection, getDoc, getDocs, setDoc, doc, query, getFirestore, deleteDoc, onSnapshot} from 'firebase/firestore'
 import {db,} from '../firebase'
 import {getAuth, signInWithEmailAndPassword} from "firebase/auth";
 import { GoogleAuthProvider } from "firebase/auth";
@@ -72,8 +72,8 @@ const ContentProvider = ({children}) => {
             const userCredential = await signInWithEmailAndPassword(auth, email, password)
             const user = userCredential.user;
             setUser(user)
+            console.log(user.email)
             return user
-            
         }   catch (error) {
             const errorCode = error.code;
             const errorMessage = error.message;
@@ -81,42 +81,9 @@ const ContentProvider = ({children}) => {
             setUser(null)
             // setError(errorMessage)
         }
+
     }
-
-    useEffect(() => {
-        const getUserData = async () => {
-            const querySnapshot = await getDocs(collection(db, 'users'))
-            const userDetails = querySnapshot.docs.map(doc => {
-                return {
-                    id: doc.id,
-                    ...doc.data()
-                }
-            }
-            )
-            setUserData(userDetails)
-            setLoading(false)
-            console.log(userDetails[0])
-        }
-        getUserData()
-    }, [])
-
-
-        useMemo(() => {
-        const getSiteData = async () => {
-            const querySnapshot = await getDocs(collection(db, 'sites'))
-            const siteDetails = querySnapshot.docs.map(doc => {
-                return {
-                    id: doc.id,
-                    ...doc.data()
-                }
-            }
-            )
-            setLoading(false)
-            setSites(siteDetails)
-        }
-        getSiteData()
-    }, [])
-
+    
 
 
 return(

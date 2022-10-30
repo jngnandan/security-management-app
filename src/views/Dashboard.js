@@ -57,7 +57,7 @@ export default function Dashboard() {
 useEffect(() => {
     getAuth().onAuthStateChanged((user) => {
         if (user) {
-            console.log(user)
+            // console.log(user.email)
         } else {
             console.log('no user')
             navigate('/')

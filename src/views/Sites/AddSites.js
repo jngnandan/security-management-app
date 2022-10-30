@@ -13,12 +13,12 @@ export default function AddSites() {
   const inputRef = useRef()
 
   const [siteName, setSiteName] = useState('')
-  const [clientAddress, setClientAddress] = useState('')
-  const [contactPerson, setContactPerson] = useState('')
+  const [siteAddress, setSiteAddress] = useState('')
+  const [siteGroup, setSiteGroup] = useState('')
   const [contactNumber, setContactNumber] = useState('')
-  const [contactFax, setContactFax] = useState('')
+  const [contactName, setContactName] = useState('')
   const [contactEmail, setContactEmail] = useState('')
-  const [invoiceTerms, setInvoiceTerms] = useState('')
+  const [postcode, setPostcode] = useState('')
   const [paymentTerms, setPaymentTerms] = useState('')
   const [contractStartDate, setContractStartDate] = useState('')
   const [contractEndDate, setContractEndDate] = useState('')
@@ -35,12 +35,12 @@ export default function AddSites() {
   const cancelClient = (e) => {
     e.preventDefault()
     setSiteName('')
-    setClientAddress('')
-    setContactPerson('')
+    setSiteAddress('')
+    setSiteGroup('')
     setContactNumber('')
-    setContactFax('')
+    setContactName('')
     setContactEmail('')
-    setInvoiceTerms('')
+    setPostcode('')
     setPaymentTerms('')
     setContractStartDate('')
     setContractEndDate('')
@@ -53,12 +53,12 @@ export default function AddSites() {
     e.preventDefault()
     const newClient = {
       siteName: siteName,
-      clientAddress: clientAddress,
-      contactPerson: contactPerson,
+      siteAddress: siteAddress,
+      siteGroup: siteGroup,
       contactNumber: contactNumber,
-      contactFax: contactFax,
+      contactName: contactName,
       contactEmail: contactEmail,
-      invoiceTerms: invoiceTerms,
+      postcode: postcode,
       paymentTerms: paymentTerms,
       contractStartDate: contractStartDate,
       contractEndDate: contractEndDate,
@@ -68,12 +68,12 @@ export default function AddSites() {
     }
     setDoc(doc(db, 'clients'), newClient)
     setSiteName('')
-    setClientAddress('')
-    setContactPerson('')
+    setSiteAddress('')
+    setSiteGroup('')
     setContactNumber('')
-    setContactFax('')
+    setContactName('')
     setContactEmail('')
-    setInvoiceTerms('')
+    setPostcode('')
     setPaymentTerms('')
     setContractStartDate('')
     setContractEndDate('')
@@ -95,7 +95,7 @@ export default function AddSites() {
         
           <div className="flex flex-col">
           <label className='font-semibold text-gray-800 text-sm pb-1'  htmlFor="address">Invoice terms</label>
-          <select onChange={(e) => setInvoiceTerms(e.target.value)} className='h-10 border rounded pl-3 placeholder:font-sm w-4/5' name="type" id="type">
+          <select onChange={(e) => setPostcode(e.target.value)} className='h-10 border rounded pl-3 placeholder:font-sm w-4/5' name="type" id="type">
           <option selected className="text-gray-500" value="select">Select Invoice Term</option>
           <option className="text-gray-500" value='weekly'>Weekly Invoice</option>
           <option className="text-gray-500" value="fortnightly">Fortnightly Invoice</option>
@@ -106,7 +106,7 @@ export default function AddSites() {
 
         <div className="flex flex-col">
           <label className='font-semibold text-gray-800 text-sm pb-1'  htmlFor="address">Address</label>
-          <textarea onChange={(e) => setClientAddress(e.target.value)} className='border rounded pl-3 py-2 placeholder:text-sm w-4/5' type="text" name="address" id="address" placeholder='Address' />
+          <textarea onChange={(e) => setSiteAddress(e.target.value)} className='border rounded pl-3 py-2 placeholder:text-sm w-4/5' type="text" name="address" id="address" placeholder='Address' />
         </div>
 
         <div className="flex flex-col">
@@ -116,7 +116,7 @@ export default function AddSites() {
 
         <div className="flex flex-col">
           <label className='font-semibold text-gray-800 text-sm pb-1' htmlFor="name">Contact Person</label>
-          <input onChange={(e) => setContactPerson(e.target.value)} className='border rounded pl-3 py-2 placeholder:text-sm w-4/5' type="text" name="name" id="name" placeholder='Contact Person' />
+          <input onChange={(e) => setSiteGroup(e.target.value)} className='border rounded pl-3 py-2 placeholder:text-sm w-4/5' type="text" name="name" id="name" placeholder='Contact Person' />
         </div>
 
         <div className="flex flex-col">
@@ -136,7 +136,7 @@ export default function AddSites() {
 
         <div className="flex flex-col">
           <label className='font-semibold text-gray-800 text-sm pb-1'  htmlFor="phone">Contact Fax</label>
-          <input onChange={(e) => setContactFax(e.target.value)} className='border rounded pl-3 py-2 placeholder:text-sm w-4/5' type="tel" name="phone" id="phone" placeholder='Contact Fax' />
+          <input onChange={(e) => setContactName(e.target.value)} className='border rounded pl-3 py-2 placeholder:text-sm w-4/5' type="tel" name="phone" id="phone" placeholder='Contact Fax' />
         </div>
 
           <div className="flex flex-col">
