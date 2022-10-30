@@ -26,9 +26,11 @@ export default function Login() {
     }
 
     useEffect(() => {
-        if(user) {
-            navigate('/dashboard')
-        }
+       getAuth().onAuthStateChanged((user) => {
+              if(user) {
+                    navigate('/dashboard')
+                }
+            })
     }, [user, navigate])
 
 

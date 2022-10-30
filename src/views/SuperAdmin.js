@@ -10,12 +10,14 @@ import { ContentContext } from '../context/ContentContext';
 
 export default function SuperAdmin() {
   const {user} = useContext(ContentContext)
-
+    const navigate = useNavigate()
     const signOut = () => {
         const auth = getAuth();
         auth.signOut().then(() => {
             // Sign-out successful.
             console.log('signed out')
+            navigate('/')
+
         }).catch((error) => {
             // An error happened.
             console.log(error)

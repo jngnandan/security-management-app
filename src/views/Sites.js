@@ -3,7 +3,9 @@ import React from 'react'
 import { useContext, useState, useEffect } from 'react'
 import { ContentContext } from '../context/ContentContext'
 import { Oval } from 'react-loader-spinner'
+import {useNavigate} from 'react-router-dom'
 
+import {getAuth} from "firebase/auth";
 
 import view from '../assets/icons/view.svg'
 import deleteItem from '../assets/icons/delete.svg'
@@ -23,12 +25,23 @@ const tabsList = [
 
 
 export default function Sites() {
-      const {employees, posts, clientList, loading} = useContext(ContentContext)
+      const {employees, posts, clientList, loading,user} = useContext(ContentContext)
       const [currentClients, setCurrentClients] = useState([])
       const [currentPage, setCurrentPage] = useState(3)
       const [tabState, setTabState] = useState('ListOfSites')
 
-    console.log(clientList)
+      const navigate = useNavigate()
+
+        useEffect(() => {
+       getAuth().onAuthStateChanged((user) => {
+              if(user) {
+                    
+                }
+                else {
+                    navigate('/')
+                }
+            })
+    }, [user, navigate])
 
   return (
     <>
