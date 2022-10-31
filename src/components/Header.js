@@ -39,8 +39,6 @@ const tabsList = [
   { tabId: 'Clients', displayText: 'Clients' },
   { tabId: 'Sites', displayText: 'Sites' },
   { tabId: 'Roster', displayText: 'Roster' },
-  { tabId: 'Calls', displayText: 'Calls' },
-  { tabId: 'Events', displayText: 'Events' },
   { tabId: 'Finance', displayText: 'Finance' },
   { tabId: 'Reports', displayText: 'Reports' },
   { tabId: 'Permissions', displayText: 'Permissions' },
@@ -68,8 +66,6 @@ function Header() {
               {tab.tabId === 'Clients' && <FiFile size={27} />}
               {tab.tabId === 'Sites' && <FiMap size={27} />}
               {tab.tabId === 'Roster' && <FiCalendar size={27} />}
-              {tab.tabId === 'Calls' && <FiPhoneIncoming size={27} />}
-              {tab.tabId === 'Events' && <FiCodesandbox size={27} />}
               {tab.tabId === 'Finance' && <FiBarChart size={27} />}
               {tab.tabId === 'Reports' && <FiLayers size={27} />}
               {tab.tabId === 'Permissions' && <FiUserCheck size={27} />}
