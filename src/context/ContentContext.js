@@ -15,7 +15,7 @@ const ContentContext = createContext();
 
 
 const ContentProvider = ({children}) => {
-    const [employees, setEmplyees] = useState([])
+    const [employees, setEmployees] = useState([]);
     const [loading, setLoading] = useState(true)
     const [clientList, setClientList] = useState([])
     const [deletedClients, setDeletedClients] = useState([])
@@ -29,7 +29,9 @@ const ContentProvider = ({children}) => {
 
     const [userData, setUserData] = useState(null)
 
-        // const navigate = useNavigate()
+    const [employeesData, setEmployeesData] = useState(null)
+    const [clientsData, setClientsData] = useState(null)
+
 
     const auth = getAuth();
 
@@ -72,7 +74,7 @@ const ContentProvider = ({children}) => {
             const userCredential = await signInWithEmailAndPassword(auth, email, password)
             const user = userCredential.user;
             setUser(user)
-            console.log(user.email)
+            // console.log(user.email)
             return user
         }   catch (error) {
             const errorCode = error.code;
@@ -83,11 +85,32 @@ const ContentProvider = ({children}) => {
         }
 
     }
+
+    useEffect(() => {
+        getAuth().onAuthStateChanged((user) => {
+            if (user) {
+                // console.log(user.email, 'cool')
+                const userData = getDoc(doc(db, 'users', user.email))
+                .then((doc) => {
+                    if (doc.exists()) {
+                        setEmployeesData(doc.data().clientList)
+                        setClientsData(doc.data().clients)
+                    }
+                })
+            } else {
+                console.log('no user')
+            }
+        })
+        
+    }, [])
+
+
+
     
 
 
 return(
-    <ContentContext.Provider value={{employees, loading, clientList, deletedClients, signIn, user, sites}}>
+    <ContentContext.Provider value={{employees, loading, clientList, deletedClients, signIn, user, sites, employeesData, clientsData}}>
         {children}
     </ContentContext.Provider>
 )
