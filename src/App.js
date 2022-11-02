@@ -6,7 +6,7 @@ import {BrowserRouter , Routes , Route} from 'react-router-dom'
 import Header from './components/Header'
 
 import Dashboard from './views/Dashboard'
-import Workforce from './views/Workforce';
+import Employees from './views/Employees';
 import Clients from './views/Clients';
 import Sites from './views/Sites';
 import Roster from './views/Roster';
@@ -25,7 +25,7 @@ function App() {
       <Header />
       <Routes>
         <Route exact path='/dashboard' element={<Dashboard />} />
-        <Route path='/workforce' element={<Workforce />} />
+        <Route path='/Employees' element={<Employees />} />
         <Route path='/clients' element={<Clients />} />
         <Route path='/sites' element={<Sites />} />
         <Route path='/roster' element={<Roster />} />

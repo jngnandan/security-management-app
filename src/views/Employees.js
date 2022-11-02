@@ -12,26 +12,26 @@ import deleteItem from '../assets/icons/delete.svg'
 import add from '../assets/icons/add.svg'
 import list from '../assets/icons/list.svg'
 
-import AddClient from '../views/Clients/AddClient'
-import ListOfClients from '../views/Clients/ListOfClients'
-import DeletedClients from '../views/Clients/DeletedClients'
+import AddEmployee from '../views/Employees/AddEmployee'
+import ListOfEmployees from '../views/Employees/ListOfEmployees'
+import DeletedEmployees from '../views/Employees/DeletedEmployees'
 
 import {FiPlusCircle} from 'react-icons/fi'
 import {FiList} from 'react-icons/fi'
 import {FiTrash} from 'react-icons/fi'
 
 const tabsList = [
-  { tabId: 'AddClient', displayText: 'Add Client' },
-  { tabId: 'ListOfClients', displayText: 'List of Clients' },
-  { tabId: 'Deleted Clients', displayText: 'Deleted Clients' },
+  { tabId: 'AddEmployee', displayText: 'Add Employee' },
+  { tabId: 'ListOfEmployees', displayText: 'List of Employees' },
+  { tabId: 'Deleted Employees', displayText: 'Deleted Employees' },
 ]
 
 
-export default function Clients() {
+export default function Employees() {
       const {employees, posts, clientList, loading, user} = useContext(ContentContext)
       const [currentClients, setCurrentClients] = useState([])
       const [currentPage, setCurrentPage] = useState(3)
-      const [tabState, setTabState] = useState('ListOfClients')
+      const [tabState, setTabState] = useState('ListOfEmployees')
 
           const navigate = useNavigate()
 
@@ -62,8 +62,8 @@ export default function Clients() {
             className={`rounded-none text-gray-700 focus:text-gray-400 rounded w-24 h-24 flex flex-col justify-center items-center ${tabState === tab.tabId ? 'bg-gray-200' : 'bg-gray-400'}`}
             onClick={() => setTabState(tab.tabId)}
           >
-            {/* <img src={tab.tabId === 'AddClient' ? add : tab.tabId === 'ListOfClients' ? list : deleteItem} alt="delete" className="w-8 h-8 m-1"/> */}
-            {tab.tabId === 'AddClient' ? <FiPlusCircle className="w-8 h-8 m-1"/> : tab.tabId === 'ListOfClients' ? <FiList className="w-8 h-8 m-1"/> : <FiTrash className="w-8 h-8 m-1"/>}
+            {/* <img src={tab.tabId === 'AddEmployee' ? add : tab.tabId === 'ListOfEmployees' ? list : deleteItem} alt="delete" className="w-8 h-8 m-1"/> */}
+            {tab.tabId === 'AddEmployee' ? <FiPlusCircle className="w-8 h-8 m-1"/> : tab.tabId === 'ListOfEmployees' ? <FiList className="w-8 h-8 m-1"/> : <FiTrash className="w-8 h-8 m-1"/>}
             <p className='text-sm font-medium pt-1'>{tab.displayText}</p>
           </button>
         ))}
@@ -71,9 +71,9 @@ export default function Clients() {
 
         {/* Main Column */}
       <div className="mr-8">
-        {tabState === 'AddClient' && <AddClient />}
-        {tabState === 'ListOfClients' && <ListOfClients />}
-        {tabState === 'Deleted Clients' && <DeletedClients />}
+        {tabState === 'AddEmployee' && <AddEmployee />}
+        {tabState === 'ListOfEmployees' && <ListOfEmployees />}
+        {tabState === 'Deleted Clients' && <DeletedEmployees />}
       </div>
       </div>
 

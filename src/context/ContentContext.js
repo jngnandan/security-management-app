@@ -93,7 +93,7 @@ const ContentProvider = ({children}) => {
                 const userData = getDoc(doc(db, 'users', user.email))
                 .then((doc) => {
                     if (doc.exists()) {
-                        setEmployeesData(doc.data().clientList)
+                        setEmployeesData(doc.data().employees)
                         setClientsData(doc.data().clients)
                     }
                 })

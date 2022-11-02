@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 import { Link } from 'react-router-dom'
 import Dashboard from '../assets/icons/dashboard.svg'
-import Workforce from '../assets/icons/workforce.svg'
+import Employees from '../assets/icons/Employees.svg'
 import Clients from '../assets/icons/clients.svg'
 import Sites from '../assets/icons/sites.svg'
 import Roster from '../assets/icons/roster.svg'
@@ -35,7 +35,7 @@ import {FiTrash} from 'react-icons/fi'
 
 const tabsList = [
   { tabId: 'Dashboard', displayText: 'Dashboard' },
-  { tabId: 'Workforce', displayText: 'Workforce' },
+  { tabId: 'Employees', displayText: 'Employees' },
   { tabId: 'Clients', displayText: 'Clients' },
   { tabId: 'Sites', displayText: 'Sites' },
   { tabId: 'Roster', displayText: 'Roster' },
@@ -62,7 +62,7 @@ function Header() {
           >
             <Link to={`/${tab.tabId}`} className="flex flex-col justify-center items-center">
               {tab.tabId === 'Dashboard' && <FiHome size={27} />}
-              {tab.tabId === 'Workforce' && <FiUsers size={27} />}
+              {tab.tabId === 'Employees' && <FiUsers size={27} />}
               {tab.tabId === 'Clients' && <FiFile size={27} />}
               {tab.tabId === 'Sites' && <FiMap size={27} />}
               {tab.tabId === 'Roster' && <FiCalendar size={27} />}

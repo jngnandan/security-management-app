@@ -15,26 +15,29 @@ import { db } from '../../firebase'
 
 import { Oval } from 'react-loader-spinner'
 
+import {MdRestore} from 'react-icons/md'
 
-export default function EmployeeItem(props) {
+
+export default function DeltedItem(props) {
     const {client, key, renderClient,} = props
-    const {id, name, address, contact, email,} = client
+    const {id, clientName} = client
+    console.log(client)
 
     const {addClient, clientList} = useContext(ContentContext)
 
     const navigate = useNavigate()
 
-    const deleteItem = async (id) => {
-        const dbRef = collection(db, "clients");
+        const deleteItem = async (id) => {
+        const dbRef = collection(db, "deletedClients");
         await deleteDoc(doc(dbRef, id))
-        window.location.reload(false);
+        // window.location.reload(false);
     }
 
     // clientName, clientEmail, contactFax, chargeRate, chargeRateSupervisor, clientAddress, contactNumber, contactEmail, contactName, invoiceTerms, paymentTerms, vat
     const addUserToFirebase = async () => {
         console.log(client)
         const db = getFirestore();
-        const dbRef = collection(db, "deletedClients");
+        const dbRef = collection(db, "clients");
         const data = {
          id: client.id,   
         clientName: client.clientName,
@@ -53,10 +56,16 @@ export default function EmployeeItem(props) {
         await setDoc(doc(dbRef), data);
         deleteItem(id)
     };
+
+            const deleteSeperate = async (id) => {
+        const dbRef = collection(db, "clients");
+        await deleteDoc(doc(dbRef, id))
+        window.location.reload(false);
+    }
     
-    const viewInfo = () => {
-        renderClient(id)
-        // navigate('/clients')
+    const deletePermanant = () => {
+        deleteSeperate(id)
+        // console.log(client)
     }
 
 
@@ -67,12 +76,12 @@ export default function EmployeeItem(props) {
                         <td className='text-sm text-left'>{client.contactNumber}</td>
                         <td className='text-sm text-left'>{client.contactEmail}</td>
                         <td className='text-sm text-left flex flex-row'>
-                            <button onClick={viewInfo} id={client.id} className='bg-blue-400 hover:bg-blue-500 text-white rounded p-1 m-1'>
+                            <button onClick={addUserToFirebase} id={client.id} className='bg-blue-400 hover:bg-blue-500 text-white rounded p-1 m-1'>
                                 {/* <Link to={`/clients/${client.id}`}> */}
-                                <FiEye className="w-6 h-6 m-1" />
+                                <MdRestore className="w-6 h-6 m-1" />
                                 {/* </Link> */}
                             </button>
-                            <button client={client} id={client.id} onClick={addUserToFirebase} className='bg-red-400 hover:bg-red-500 text-white rounded p-1 m-1'>
+                            <button id={client.id} onClick={deletePermanant} className='bg-red-400 hover:bg-red-500 text-white rounded p-1 m-1'>
                                 <FiTrash className="w-6 h-6 m-1" />
                             </button>
                         </td>

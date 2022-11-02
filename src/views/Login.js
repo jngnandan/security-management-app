@@ -23,6 +23,7 @@ export default function Login() {
     const handleSubmit = (e) => {
         e.preventDefault()
         signIn(email, password)
+        // console.log(email, password)
     }
 
     useEffect(() => {
