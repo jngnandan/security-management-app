@@ -18,6 +18,7 @@ import Permissions from './views/Permissions';
 import Settings from './views/Settings'
 import Login from './views/Login';
 import SuperAdmin from './views/SuperAdmin'
+import Subcontractor from './views/Subcontractor'
 
 function App() {
   return (
@@ -25,18 +26,19 @@ function App() {
       <Header />
       <Routes>
         <Route exact path='/dashboard' element={<Dashboard />} />
-        <Route path='/Employees' element={<Employees />} />
-        <Route path='/clients' element={<Clients />} />
-        <Route path='/sites' element={<Sites />} />
-        <Route path='/roster' element={<Roster />} />
-        <Route path='/calls' element={<Calls />} />
-        <Route path='/events' element={<Events />} />
-        <Route path='/finance' element={<Finance />} />
-        <Route path='/reports' element={<Reports />} />
-        <Route path='/permissions' element={<Permissions />} />
-        <Route path='/settings' element={<Settings />} />
-        <Route path='/' element={<Login />} />
-        <Route path='/superadmin' element={<SuperAdmin />} />
+        <Route exact path='/Employees' element={<Employees />} />
+        <Route exact path='/clients' element={<Clients />} />
+        <Route exact path='/sites' element={<Sites />} />
+        <Route exact path='/roster' element={<Roster />} />
+        <Route exact path='/calls' element={<Calls />} />
+        <Route exact path='/events' element={<Events />} />
+        <Route exact path='/finance' element={<Finance />} />
+        <Route exact path='/reports' element={<Reports />} />
+        <Route exact path='/permissions' element={<Permissions />} />
+        <Route exact path='/settings' element={<Settings />} />
+        <Route exact path='/' element={<Login />} />
+        <Route exact path='/superadmin' element={<SuperAdmin />} />
+        <Route exact path='/subscontractor' element={<Subcontractor />} />
       </Routes>
 
   </BrowserRouter>
