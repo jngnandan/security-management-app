@@ -16,7 +16,7 @@ import { db } from '../../firebase'
 import { Oval } from 'react-loader-spinner'
 
 
-export default function EmployeeItem(props) {
+export default function RosterItem(props) {
     const {client, key, renderClient,} = props
     const {id, name, address, contact, email,} = client
 
@@ -63,19 +63,9 @@ export default function EmployeeItem(props) {
   return (
         <tr className="grid grid-cols-6 gap-3 text-sm items-center border border-1 py-3 mx-4 px-4 text-gray-800">
                         <td className='text-sm text-left'>{client.clientName}</td>
-                        <td className='text-sm text-left col-span-2'>{client.clientAddress}</td>
-                        <td className='text-sm text-left'>{client.contactNumber}</td>
+                        <td className='text-sm text-left'>{client.clientAddress}</td>
+                        <td className='text-sm text-left col-span-2'>{client.contactNumber}</td>
                         <td className='text-sm text-left'>{client.contactEmail}</td>
-                        <td className='text-sm text-left flex flex-row'>
-                            <button onClick={viewInfo} id={client.id} className='bg-blue-400 hover:bg-blue-500 text-white rounded p-1 m-1'>
-                                {/* <Link to={`/clients/${client.id}`}> */}
-                                <FiEye className="w-6 h-6 m-1" />
-                                {/* </Link> */}
-                            </button>
-                            <button client={client} id={client.id} onClick={addUserToFirebase} className='bg-red-400 hover:bg-red-500 text-white rounded p-1 m-1'>
-                                <FiTrash className="w-6 h-6 m-1" />
-                            </button>
-                        </td>
         </tr>
   )
 }

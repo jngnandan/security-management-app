@@ -3,6 +3,7 @@ import React from 'react'
 import { useContext, useState, useEffect } from 'react'
 import { ContentContext } from '../../context/ContentContext'
 
+import moment from 'moment'
 import {collection, getDocs, setDoc, doc, query} from 'firebase/firestore'
 import {db} from '../../firebase'
 
@@ -11,7 +12,7 @@ import {FiEye} from 'react-icons/fi'
 
 import {Link} from 'react-router-dom'
 
-import EmployeeItem from './EmployeeItem'
+import EmployeeItem from './RosterItem'
 import { Oval } from 'react-loader-spinner'
 import {BsFillXCircleFill} from 'react-icons/bs'
 
@@ -22,11 +23,53 @@ export default function ClientRoster() {
       const [tabState, setTabState] = useState('ListOfClients')
 
       const [clientDetails, setClientDetails] = useState(null)
+      var now = moment();
+var monday = now.clone().weekday(1).format('ddd, DD MMM YY');
+var tuesday = now.clone().weekday(2).format('ddd, DD MMM YY');
+var wednesday = now.clone().weekday(3).format('ddd, DD MMM YY');
+var thursday = now.clone().weekday(4).format('ddd, DD MMM YY');
+var friday = now.clone().weekday(5).format('ddd, DD MMM YY');
+var saturday = now.clone().weekday(6).format('ddd, DD MMM YY');
+var sunday = now.clone().weekday(7).format('ddd, DD MMM YY');
+var isNowWeekday = now.isBetween(monday, friday, null, '[]');
+
+      const [firstDay, setFirstDay] = useState(monday)
+      const [secondDay, setSecondDay] = useState(tuesday)
+        const [thirdDay, setThirdDay] = useState(wednesday)
+        const [fourthDay, setFourthDay] = useState(thursday)
+        const [fifthDay, setFifthDay] = useState(friday)
+        const [sixthDay, setSixthDay] = useState(saturday)
+        const [seventhDay, setSeventhDay] = useState(sunday)
+        
 
       const renderClient = async (id) => {
             const findClient = await clientList.find(client => client.id === id)
             setClientDetails(findClient)
       }
+
+
+
+const previousWeek = () => {
+        now = now.subtract(1, 'weeks');
+        setFirstDay(now.clone().weekday(1).format('ddd, DD MMM YY'));
+        setSecondDay(now.clone().weekday(2).format('ddd, DD MMM YY'));
+        setThirdDay(now.clone().weekday(3).format('ddd, DD MMM YY'));
+        setFourthDay(now.clone().weekday(4).format('ddd, DD MMM YY'));
+        setFifthDay(now.clone().weekday(5).format('ddd, DD MMM YY'));
+        setSixthDay(now.clone().weekday(6).format('ddd, DD MMM YY'));
+        setSeventhDay(now.clone().weekday(7).format('ddd, DD MMM YY'));
+    }
+
+    const nextWeek = () => {
+        now = now.add(1, 'weeks');
+        setFirstDay(now.clone().weekday(1).format('ddd, DD MMM YY'));
+        setSecondDay(now.clone().weekday(2).format('ddd, DD MMM YY'));
+        setThirdDay(now.clone().weekday(3).format('ddd, DD MMM YY'));
+        setFourthDay(now.clone().weekday(4).format('ddd, DD MMM YY'));
+        setFifthDay(now.clone().weekday(5).format('ddd, DD MMM YY'));
+        setSixthDay(now.clone().weekday(6).format('ddd, DD MMM YY'));
+        setSeventhDay(now.clone().weekday(7).format('ddd, DD MMM YY'));
+    }
 
 
   return (
@@ -39,11 +82,12 @@ export default function ClientRoster() {
             <div>
                 <h1 className="text-2xl text-center font-bold text-gray-900">Client Details</h1>
             </div>
+
             {clientDetails ? (
                 <div>
                 <div className="flex flex-col items-start justify-start pl-16">
                     <div className="flex flex-row justify-start items-center w-54 m-1">
-                        <p className="text-sm font-semibold text-gray-700">Client Name:</p>
+                        <p className="text-sm font-semibold text-gray-700">Client Cool:</p>
                     <p className="m-2 w-54 text-sm">{clientDetails.clientName}</p>
                     </div>
                     <div className="flex flex-row justify-start items-center w-54 m-1">
@@ -123,15 +167,26 @@ export default function ClientRoster() {
                 <p className="text-sm">Search</p>
                 <input onChange={(e) => setCurrentClients(e.target.value)} type="text" className="w-40 h-10 border border-1 mx-4 my-2 rounded" />
             </div>
+
+            <div className="flex flex-row justify-center">
+              {/* change week */}
+              <button className="bg-blue-300 hover:bg-blue-400 py-1 px-2 rounded m-4" onClick={previousWeek}>Previous Week</button>
+                <button className="bg-blue-300 hover:bg-blue-400 py-1 px-2 rounded m-4" onClick={nextWeek}>Next Week</button>
+            </div>
         </div>
                 <table className="w-11/12 mr-6">
-                    <tr className="grid grid-cols-6 gap-3 text-sm items-center border border-1 py-3 mx-4 px-4 bg-gray-100">
+                    <tr className="grid grid-cols-11 gap-3 text-sm items-center border border-1 py-3 mx-4 px-4 bg-gray-100">
                     {/* <button className='text-sm text-left font-semibold text-gray-700'>Name    </button> */}
                     <button className='text-sm text-left font-semibold text-gray-700'>Client</button>
-                    <button  className='text-sm text-left col-span-2 font-semibold text-gray-700 hover:text-black'>Address</button>
-                    <button className='text-sm text-left font-semibold text-gray-700'>Contact</button>
-                    <button className='text-sm text-left font-semibold text-gray-700'>Email</button>
-                    <button className='text-sm text-left font-semibold text-gray-700'>Actions</button>
+                    <button  className='text-sm text-left font-semibold text-gray-700 hover:text-black'>Sid</button>
+                    <button className='text-sm text-left col-span-2 font-semibold text-gray-700'>Site Name</button>
+                    <button className='text-sm text-left font-semibold text-gray-700'>{firstDay}</button>
+                    <button className='text-sm text-left font-semibold text-gray-700'>{secondDay}</button>
+                    <button className='text-sm text-left font-semibold text-gray-700'>{thirdDay}</button>
+                    <button className='text-sm text-left font-semibold text-gray-700'>{fourthDay}</button>
+                    <button className='text-sm text-left font-semibold text-gray-700'>{fifthDay}</button>
+                    <button className='text-sm text-left font-semibold text-gray-700'>{sixthDay}</button>
+                    <button className='text-sm text-left font-semibold text-gray-700'>{seventhDay}</button>
                     </tr>
                     {clientList.slice(setCurrentClients, currentPage).map((client, index) => (
                         <EmployeeItem key={index} client={client} renderClient={renderClient}/>
