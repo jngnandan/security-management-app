@@ -46,7 +46,6 @@ const tabsList = [
   { tabId: 'Roster', displayText: 'Roster' },
   { tabId: 'Finance', displayText: 'Finance' },
   { tabId: 'Reports', displayText: 'Reports' },
-  { tabId: 'Permissions', displayText: 'Permissions' },
   { tabId: 'Settings', displayText: 'Settings' },
   { tabId: 'Superadmin', displayText: 'Superadmin' },
 ]
