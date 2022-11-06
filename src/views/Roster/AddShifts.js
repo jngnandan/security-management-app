@@ -1,6 +1,8 @@
 
 import React from 'react'
 import { useContext, useState, useEffect,} from 'react'
+import { ContentContext } from '../../context/ContentContext'
+
 import { useNavigate,} from 'react-router-dom'
 
 import { useRef } from 'react'
@@ -11,6 +13,8 @@ import {db} from '../../firebase'
 
 export default function AddShifts() {
   const inputRef = useRef()
+  const {employees, sites, clientList, loading,} = useContext(ContentContext)
+  console.log(clientList)
 
   const [clientName, setClientName] = useState('')
   const [clientAddress, setClientAddress] = useState('')
@@ -26,7 +30,6 @@ export default function AddShifts() {
   const [chargeRateSupervisor, setChargeRateSupervisor] = useState('')
   const [vat, setVat] = useState('')
 
-  const [clientList, setClientList] = useState([])
 
   const [error, setError] = useState(null)
 
@@ -96,19 +99,30 @@ export default function AddShifts() {
        
        {/* Client Name */}
        
-        <div className="flex flex-col">
-          <label className='font-semibold text-gray-800 text-sm pb-1' htmlFor="name">Client Name</label>
-          <input ref={inputRef} className='border rounded pl-3 py-2 placeholder:text-sm w-4/5' type="text" name="name" id="name" placeholder='Client Name' value={clientName} onChange={(e) => setClientName(e.target.value)} />
+       <div className="flex flex-col">
+          <label className='font-semibold text-gray-800 text-sm pb-1'  htmlFor="address">Client Name</label>
+          <select onChange={(e) => setInvoiceTerms(e.target.value)} className='h-10 border rounded pl-3 placeholder:font-sm w-4/5' name="type" id="type">
+            {clientList.map((client) => (
+              <option key={client.id} value={client.clientName}>{client.clientName}</option>
+            ))}
+        </select>
         </div>
+
+
         {/* Payable Rates */}
         <div className="flex flex-col">
           <label className='font-semibold text-gray-800 text-sm pb-1' htmlFor="address">Payable Rates</label>
           <input ref={inputRef} className='border rounded pl-3 py-2 placeholder:text-sm w-4/5' type="number" name="address" id="address" placeholder='Client Address' value={clientAddress} onChange={(e) => setClientAddress(e.target.value)} />
         </div>
+
         {/* Site Name */}
         <div className="flex flex-col">
-          <label className='font-semibold text-gray-800 text-sm pb-1' htmlFor="name">Site Name</label>
-          <input ref={inputRef} className='border rounded pl-3 py-2 placeholder:text-sm w-4/5' type="text" name="name" id="name" placeholder='Client Name' value={clientName} onChange={(e) => setClientName(e.target.value)} />
+          <label className='font-semibold text-gray-800 text-sm pb-1'  htmlFor="address">Sites</label>
+          <select onChange={(e) => setInvoiceTerms(e.target.value)} className='h-10 border rounded pl-3 placeholder:font-sm w-4/5' name="type" id="type">
+            {sites.map((client) => (
+              <option key={client.id} value={client.clientName}>{client.clientName}</option>
+            ))}
+        </select>
         </div>
         {/* Amount */}
         <div className="flex flex-col">
@@ -117,8 +131,12 @@ export default function AddShifts() {
         </div>
         {/* Staff */}
         <div className="flex flex-col">
-          <label className='font-semibold text-gray-800 text-sm pb-1' htmlFor="name">Staff</label>
-          <input ref={inputRef} className='border rounded pl-3 py-2 placeholder:text-sm w-4/5' type="text" name="name" id="name" placeholder='Client Name' value={clientName} onChange={(e) => setClientName(e.target.value)} />
+          <label className='font-semibold text-gray-800 text-sm pb-1'  htmlFor="address">Staff</label>
+          <select onChange={(e) => setInvoiceTerms(e.target.value)} className='h-10 border rounded pl-3 placeholder:font-sm w-4/5' name="type" id="type">
+            {employees.map((client) => (
+              <option key={client.id} value={client.clientName}>{client.clientName}</option>
+            ))}
+        </select>
         </div>
 
         {/* Payable Expenses */}
