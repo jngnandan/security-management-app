@@ -15,6 +15,9 @@ import {Link} from 'react-router-dom'
 import EmployeeItem from './RosterItem'
 import { Oval } from 'react-loader-spinner'
 import {BsFillXCircleFill} from 'react-icons/bs'
+import {BsCalendarPlus} from 'react-icons/bs'
+import {GrPrevious} from 'react-icons/gr'
+import {GrNext} from 'react-icons/gr'
 
 export default function ClientRoster() {
       const {employees, posts, clientList, loading,} = useContext(ContentContext)
@@ -46,6 +49,18 @@ var isNowWeekday = now.isBetween(monday, friday, null, '[]');
             const findClient = await clientList.find(client => client.id === id)
             setClientDetails(findClient)
       }
+
+const currentWeek = () => {
+        var now = moment();
+var monday = now.clone().weekday(1).format('ddd, DD MMM YY');
+var tuesday = now.clone().weekday(2).format('ddd, DD MMM YY');
+var wednesday = now.clone().weekday(3).format('ddd, DD MMM YY');
+var thursday = now.clone().weekday(4).format('ddd, DD MMM YY');
+var friday = now.clone().weekday(5).format('ddd, DD MMM YY');
+var saturday = now.clone().weekday(6).format('ddd, DD MMM YY');
+var sunday = now.clone().weekday(7).format('ddd, DD MMM YY');
+var isNowWeekday = now.isBetween(monday, friday, null, '[]');
+}
 
 
 
@@ -168,10 +183,11 @@ const previousWeek = () => {
                 <input onChange={(e) => setCurrentClients(e.target.value)} type="text" className="w-40 h-10 border border-1 mx-4 my-2 rounded" />
             </div>
 
-            <div className="flex flex-row justify-center">
+            <div className="flex flex-row justify-center items-center">
               {/* change week */}
-              <button className="bg-blue-300 hover:bg-blue-400 py-1 px-2 rounded m-4" onClick={previousWeek}>Previous Week</button>
-                <button className="bg-blue-300 hover:bg-blue-400 py-1 px-2 rounded m-4" onClick={nextWeek}>Next Week</button>
+              <button className="bg-gray-200 hover:bg-gray-300 p-2.5 rounded m-4" onClick={previousWeek}><GrPrevious/></button>
+               <button><BsCalendarPlus className="text-2xl text-gray-500" onClick={currentWeek}/></button>
+                <button className="bg-gray-200 hover:bg-gray-300 p-2.5 rounded m-4 hover:text-gray-500" onClick={nextWeek}><GrNext /></button>
             </div>
         </div>
                 <table className="w-11/12 mr-6">
