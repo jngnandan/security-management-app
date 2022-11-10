@@ -19,6 +19,7 @@ import Settings from './views/Settings'
 import Login from './views/Login';
 import SuperAdmin from './views/SuperAdmin'
 import Subcontractor from './views/Subcontractor'
+import Counter from './features/counter/Counter'
 
 function App() {
   return (
@@ -39,6 +40,8 @@ function App() {
         <Route exact path='/' element={<Login />} />
         <Route exact path='/superadmin' element={<SuperAdmin />} />
         <Route exact path='/subscontractor' element={<Subcontractor />} />
+        <Route exact path='/counter' element={<Counter />} />
+
       </Routes>
 
   </BrowserRouter>

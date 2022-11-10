@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@reduxjs/toolkit": "^1.9.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -21,8 +22,10 @@
     "react-icons": "^4.6.0",
     "react-loader-spinner": "^5.3.4",
     "react-modal": "^3.16.1",
+    "react-redux": "^8.0.5",
     "react-router-dom": "^6.4.2",
     "react-scripts": "5.0.1",
+    "redux": "^4.2.0",
     "sqlite": "^4.1.2",
     "sqlite3": "^5.1.2",
     "tailwind-styled-components": "^2.2.0",

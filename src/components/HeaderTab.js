@@ -5,15 +5,19 @@ import {Link} from 'react-router-dom'
 import { useState } from 'react'
 
 function HeaderTab(props) {
+  const {tab} = props
   const { tabId, displayText, path, icon } = props.tab
 
   const [tabState, setTabState] = useState('dashboard')
 
   const [open, setOpen] = useState(false)
 
+
+
+
   if(props.tab.subMenu){
     return (
-      <div className={open ? "dropdown-menu show" : "dropdown-menu"} aria-labelledby="dropdownMenuButton">
+      <div key={tab.tabId} className={`rounded-none text-gray-700 w-24 h-24`} aria-labelledby="dropdownMenuButton">
         <button onClick={() => setOpen(!open)}>
           {props.tab.subMenu.map((eachItem) => (
             <Link to={eachItem.path} className="dropdown-item" key={eachItem.eachItemId}>
@@ -29,7 +33,7 @@ function HeaderTab(props) {
   else{
 
   return (
-    <Link to={path} className="header-tab">
+    <Link key={tab.tabId} to={path} className="header-tab">
     <button 
         key={tabId}
     // onClick={() => setTabState(tabId)}
