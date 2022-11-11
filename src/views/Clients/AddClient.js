@@ -10,6 +10,8 @@ import {db} from '../../firebase'
 import {getAuth, signInWithEmailAndPassword} from "firebase/auth";
 import firebase from 'firebase/compat/app'; //v9
 
+import { Oval } from 'react-loader-spinner'
+import {HiCheckCircle} from 'react-icons/hi'
 
 import {ContentContext} from '../../context/ContentContext'
 
@@ -36,6 +38,8 @@ export default function AddClient() {
 
   const [error, setError] = useState(null)
 
+  const [loading, setLoading] = useState(null)
+
   const navigate = useNavigate()
 
   const cancelClient = (e) => {
@@ -57,6 +61,8 @@ export default function AddClient() {
   
   const handleSubmit = (e, user) => {
     e.preventDefault()
+    setLoading(true)
+
     const newClient = {
       clientName: clientName,
       clientAddress: clientAddress,
@@ -73,15 +79,21 @@ export default function AddClient() {
       vat: vat,
     }
 
+
     getAuth().onAuthStateChanged((user) => {
       // console.log(newClient)
       if (user) {
         // update data in the array users, users.email, clients array update newClients
-        setDoc(doc(db, 'users', user.email), {
-          clients: firebase.firestore.FieldValue.arrayUnion(newClient)
-        }, {merge: true})
+        // setDoc(doc(db, 'users', user.email), {
+        //   clients: firebase.firestore.FieldValue.arrayUnion(newClient)
+        // }, {merge: true})
+        console.log('user is signed in')
+        
       }
     })
+    setLoading(false)
+
+    // setLoading(null)
   }
 
 
@@ -163,10 +175,22 @@ export default function AddClient() {
         </div>
 
         <div className="flex flex-row justify-start grid-span-2 mt-3">
-        <button onSubmit={cancelClient}  className='border border-gray-500 text-gray-700 px-4 py-2 rounded'>Cancel</button>
-        <button onSubmit={handleSubmit} className='bg-green-500 text-white px-4 py-2 rounded ml-2'>Save</button>
+        <button onSubmit={cancelClient}  className='border border-gray-500 text-gray-700 px-4 py-2 rounded '>Cancel</button>
+        
+        
+        {loading === false && <button className='bg-green-500 text-white px-4 py-2 rounded ml-2'><HiCheckCircle className='animate text-white text-2xl w-12'  /></button>}
+        {loading === true && 
+        <button onClick={handleSubmit} className='px-7 bg-green-500 text-white px-4 py-2 rounded ml-2'>
+        <Oval   strokeWidth={4}
+  strokeWidthSecondary={4}
+ type="ThreeDots" color="white"   secondaryColor="white" height={21} width={21} />
+        </button>}
+
+        {loading === null && <button onSubmit={handleSubmit} className='bg-green-500 text-white px-6 py-2 rounded ml-2'>Save</button>}
       </div>
       </form>
+      {loading === false && <button onClick={() => setLoading(null)} className=' mt-6 text-black'>New Entry</button>}
+
       <p className="my-4">{error}</p>
     </div>
   )
