@@ -61,7 +61,7 @@ export default function AddClient() {
   
   const handleSubmit = (e, user) => {
     e.preventDefault()
-    setLoading(true)
+    setLoading(false)
 
     const newClient = {
       clientName: clientName,
@@ -91,7 +91,7 @@ export default function AddClient() {
         
       }
     })
-    setLoading(false)
+    setLoading(true)
 
     // setLoading(null)
   }
@@ -104,7 +104,7 @@ export default function AddClient() {
       <form ref={inputRef} onSubmit={handleSubmit} className='grid grid-cols-2 gap-y-4 mt-6'>
         <div className="flex flex-col">
           <label className='font-semibold text-gray-800 text-sm pb-1' htmlFor="name">Name</label>
-          <input onChange={(e) => setClientName(e.target.value)} className='border rounded pl-3 py-2 placeholder:text-sm w-4/5' type="text" name="name" id="name" placeholder='Client Name' />
+          <input value={clientName} onChange={(e) => setClientName(e.target.value)} className='border rounded pl-3 py-2 placeholder:text-sm w-4/5' type="text" name="name" id="name" placeholder='Client Name' />
         </div>
         
           <div className="flex flex-col">
@@ -120,58 +120,58 @@ export default function AddClient() {
 
         <div className="flex flex-col">
           <label className='font-semibold text-gray-800 text-sm pb-1'  htmlFor="address">Address</label>
-          <textarea onChange={(e) => setClientAddress(e.target.value)} className='border rounded pl-3 py-2 placeholder:text-sm w-4/5' type="text" name="address" id="address" placeholder='Address' />
+          <textarea value={clientAddress} onChange={(e) => setClientAddress(e.target.value)} className='border rounded pl-3 py-2 placeholder:text-sm w-4/5' type="text" name="address" id="address" placeholder='Address' />
         </div>
 
         <div className="flex flex-col">
           <label className='font-semibold text-gray-800 text-sm pb-1'  htmlFor="address">Payment Terms</label>
-          <textarea onChange={(e) => setPaymentTerms(e.target.value)} className='border rounded pl-3 py-2 placeholder:text-sm w-4/5' type="text" name="address" id="address" placeholder='Payment Terms' />
+          <textarea value={paymentTerms} onChange={(e) => setPaymentTerms(e.target.value)} className='border rounded pl-3 py-2 placeholder:text-sm w-4/5' type="text" name="address" id="address" placeholder='Payment Terms' />
         </div>
 
         <div className="flex flex-col">
           <label className='font-semibold text-gray-800 text-sm pb-1' htmlFor="name">Contact Person</label>
-          <input onChange={(e) => setContactPerson(e.target.value)} className='border rounded pl-3 py-2 placeholder:text-sm w-4/5' type="text" name="name" id="name" placeholder='Contact Person' />
+          <input value={contactPerson} onChange={(e) => setContactPerson(e.target.value)} className='border rounded pl-3 py-2 placeholder:text-sm w-4/5' type="text" name="name" id="name" placeholder='Contact Person' />
         </div>
 
         <div className="flex flex-col">
           <label className='font-semibold text-gray-800 text-sm pb-1' htmlFor="date">Contact Start</label>
-          <input onChange={(e) => setContractStartDate(e.target.value)} className='border rounded pl-3 py-2 placeholder:text-sm w-4/5' type="date" name="name" id="name" placeholder='00/00/0000' />
+          <input value={contractStartDate} onChange={(e) => setContractStartDate(e.target.value)} className='border rounded pl-3 py-2 placeholder:text-sm w-4/5' type="date" name="name" id="name" placeholder='00/00/0000' />
         </div>
 
       <div className="flex flex-col">
           <label className='font-semibold text-gray-800 text-sm pb-1'  htmlFor="phone">Contact Number</label>
-          <input onChange={(e) => setContactNumber(e.target.value)} className='border rounded pl-3 py-2 placeholder:text-sm w-4/5' type="tel" name="phone" id="phone" placeholder='Contact Number' />
+          <input value={contactNumber} onChange={(e) => setContactNumber(e.target.value)} className='border rounded pl-3 py-2 placeholder:text-sm w-4/5' type="tel" name="phone" id="phone" placeholder='Contact Number' />
         </div>
 
         <div className="flex flex-col">
           <label className='font-semibold text-gray-800 text-sm pb-1' htmlFor="date">Contact End</label>
-          <input onChange={(e) => setContractEndDate(e.target.value)} className='border rounded pl-3 py-2 placeholder:text-sm w-4/5' type="date" name="date" id="name" placeholder='' />
+          <input value={contractEndDate} onChange={(e) => setContractEndDate(e.target.value)} className='border rounded pl-3 py-2 placeholder:text-sm w-4/5' type="date" name="date" id="name" placeholder='' />
         </div>
 
         <div className="flex flex-col">
           <label className='font-semibold text-gray-800 text-sm pb-1'  htmlFor="phone">Contact Fax</label>
-          <input onChange={(e) => setContactFax(e.target.value)} className='border rounded pl-3 py-2 placeholder:text-sm w-4/5' type="tel" name="phone" id="phone" placeholder='Contact Fax' />
+          <input value={contactFax} onChange={(e) => setContactFax(e.target.value)} className='border rounded pl-3 py-2 placeholder:text-sm w-4/5' type="tel" name="phone" id="phone" placeholder='Contact Fax' />
         </div>
 
           <div className="flex flex-col">
           <label className='font-semibold text-gray-800 text-sm pb-1'  htmlFor="charge">Charge Rate (Guard)</label>
-          <input onChange={(e) => setChargeRate(e.target.value)} className='border rounded pl-3 py-2 placeholder:text-sm w-4/5' type="text" name="charge" id="phone" placeholder='Contact Fax' />
+          <input value={chargeRate} onChange={(e) => setChargeRate(e.target.value)} className='border rounded pl-3 py-2 placeholder:text-sm w-4/5' type="text" name="charge" id="phone" placeholder='Contact Fax' />
         </div>
 
         <div className="flex flex-col">
           <label className='font-semibold text-gray-800 text-sm pb-1' htmlFor="email">Email</label>
-          <input onChange={(e) => setContactEmail(e.target.value)} className='border rounded pl-3 py-2 placeholder:text-sm w-4/5' type="email" name="email" id="email" placeholder='Email' />
+          <input value={contactEmail} onChange={(e) => setContactEmail(e.target.value)} className='border rounded pl-3 py-2 placeholder:text-sm w-4/5' type="email" name="email" id="email" placeholder='Email' />
         </div>
 
         <div className="flex flex-col">
           <label className='font-semibold text-gray-800 text-sm pb-1'  htmlFor="charge">Charge Rate (Supervisor)</label>
-          <input onChange={(e) => setChargeRateSupervisor(e.target.value)} className='border rounded pl-3 py-2 placeholder:text-sm w-4/5' type="text" name="charge" id="phone" placeholder='Contact Fax' />
+          <input value={chargeRateSupervisor} onChange={(e) => setChargeRateSupervisor(e.target.value)} className='border rounded pl-3 py-2 placeholder:text-sm w-4/5' type="text" name="charge" id="phone" placeholder='Contact Fax' />
         </div>
 
         {/* checkbox */}
         <div className="flex flex-row justify-start items-center col-span-2">
           <input className='' type="checkbox" name="charge" id="phone" placeholder='Contact Fax' />
-          <label onChange={(e) => setVat(e.target.value)} className='text-gray-800 text-sm p-1 pt-1.5 pl-2'  htmlFor="charge">VAT Registered</label>
+          <label value={vat} onChange={(e) => setVat(e.target.value)} className='text-gray-800 text-sm p-1 pt-1.5 pl-2'  htmlFor="charge">VAT Registered</label>
         </div>
 
         <div className="flex flex-row justify-start grid-span-2 mt-3">
