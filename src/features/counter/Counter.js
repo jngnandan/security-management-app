@@ -1,6 +1,6 @@
 
 import { useSelector, useDispatch } from 'react-redux'
-import { increment, decrement, incrementByAmount, reset } from './counterSlice'
+import { increment, decrement, incrementByAmount, reset, userData } from './counterSlice'
 
 import { useState } from 'react'
 
@@ -16,6 +16,11 @@ const Counter = () => {
         setIncrementAmount(0)
         dispatch(reset());
     }
+
+    // const getData = () => dispatch(userData())
+
+    console.log(userData())
+
 
     return (
         <div>

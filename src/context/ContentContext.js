@@ -31,6 +31,7 @@ const ContentProvider = ({children}) => {
 
     const [employeesData, setEmployeesData] = useState(null)
     const [clientsData, setClientsData] = useState(null)
+    const [sitesData, setSitesData] = useState(null)
 
 
     const auth = getAuth();
@@ -95,6 +96,7 @@ const ContentProvider = ({children}) => {
                     if (doc.exists()) {
                         setEmployeesData(doc.data().employees)
                         setClientsData(doc.data().clients)
+                        setSitesData(doc.data().sites)
                     }
                 })
             } else {
@@ -110,7 +112,7 @@ const ContentProvider = ({children}) => {
 
 
 return(
-    <ContentContext.Provider value={{employees, loading, clientList, deletedClients, signIn, user, sites, employeesData, clientsData}}>
+    <ContentContext.Provider value={{employees, loading, clientList, deletedClients, signIn, user, sites, employeesData, clientsData, sitesData}}>
         {children}
     </ContentContext.Provider>
 )

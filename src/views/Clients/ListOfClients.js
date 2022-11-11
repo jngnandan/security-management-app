@@ -16,7 +16,7 @@ import { Oval } from 'react-loader-spinner'
 import {BsFillXCircleFill} from 'react-icons/bs'
 
 export default function ListOfClients() {
-      const {employees, posts, clientList, loading,} = useContext(ContentContext)
+      const {employees, posts, clientList, loading, clientsData} = useContext(ContentContext)
       const [currentClients, setCurrentClients] = useState([])
       const [currentPage, setCurrentPage] = useState(10)
       const [tabState, setTabState] = useState('ListOfClients')
@@ -24,10 +24,10 @@ export default function ListOfClients() {
       const [clientDetails, setClientDetails] = useState(null)
 
       const renderClient = async (id) => {
-            const findClient = await clientList.find(client => client.id === id)
+            const findClient = await clientsData.find(client => client.id === id)
             setClientDetails(findClient)
+            console.log(findClient)
       }
-
 
   return (
     <div className="bg-gray-200 w-screen">
@@ -133,7 +133,7 @@ export default function ListOfClients() {
                     <button className='text-sm text-left font-semibold text-gray-700'>Email</button>
                     <button className='text-sm text-left font-semibold text-gray-700'>Actions</button>
                     </tr>
-                    {clientList.slice(setCurrentClients, currentPage).map((client, index) => (
+                    {clientsData.slice(setCurrentClients, currentPage).map((client, index) => (
                         <ClientItem key={index} client={client} renderClient={renderClient}/>
                     ))}
                                 {/* Pagination */}

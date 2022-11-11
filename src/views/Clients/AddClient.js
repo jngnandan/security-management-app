@@ -7,9 +7,15 @@ import { useRef } from 'react'
 
 import {collection, getDocs, setDoc, doc, query} from 'firebase/firestore'
 import {db} from '../../firebase'
+import {getAuth, signInWithEmailAndPassword} from "firebase/auth";
+import firebase from 'firebase/compat/app'; //v9
 
+
+import {ContentContext} from '../../context/ContentContext'
 
 export default function AddClient() {
+  const {user} = useContext(ContentContext)
+
   const inputRef = useRef()
 
   const [clientName, setClientName] = useState('')
@@ -49,7 +55,7 @@ export default function AddClient() {
     setVat('')
   }
   
-  const handleSubmit = (e) => {
+  const handleSubmit = (e, user) => {
     e.preventDefault()
     const newClient = {
       clientName: clientName,
@@ -66,22 +72,18 @@ export default function AddClient() {
       chargeRateSupervisor: chargeRateSupervisor,
       vat: vat,
     }
-    setDoc(doc(db, 'clients'), newClient)
-    setClientName('')
-    setClientAddress('')
-    setContactPerson('')
-    setContactNumber('')
-    setContactFax('')
-    setContactEmail('')
-    setInvoiceTerms('')
-    setPaymentTerms('')
-    setContractStartDate('')
-    setContractEndDate('')
-    setChargeRate('')
-    setChargeRateSupervisor('')
-    setVat('')
-    setError('Successfully added client') 
+
+    getAuth().onAuthStateChanged((user) => {
+      // console.log(newClient)
+      if (user) {
+        // update data in the array users, users.email, clients array update newClients
+        setDoc(doc(db, 'users', user.email), {
+          clients: firebase.firestore.FieldValue.arrayUnion(newClient)
+        }, {merge: true})
+      }
+    })
   }
+
 
 
   return (
