@@ -10,22 +10,22 @@ function HeaderTab(props) {
 
   const [tabState, setTabState] = useState('dashboard')
 
-  const [open, setOpen] = useState(false)
+  const [subMenu, setSubMenu] = useState(false)
 
 
 
-
-  if(props.tab.subMenu){
+  if(props.tab.subMenu > 0){
     return (
       <div key={tab.tabId} className={`rounded-none text-gray-700 w-24 h-24`} aria-labelledby="dropdownMenuButton">
-        <button onClick={() => setOpen(!open)}>
           {props.tab.subMenu.map((eachItem) => (
-            <Link to={eachItem.path} className="dropdown-item" key={eachItem.eachItemId}>
+            <button onClick={() => setSubMenu(!subMenu)} className="dropdown-item" key={eachItem.eachItemId}>
               {eachItem.icon}
               {eachItem.displayText}
-            </Link>
+            </button>
           ))}
-        </button>
+          <div>
+            
+          </div>
       </div>
     )
   }
