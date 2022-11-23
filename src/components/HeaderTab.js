@@ -16,7 +16,7 @@ function HeaderTab(props) {
 
   if(props.tab.subMenu > 0){
     return (
-      <div key={tab.tabId} className={`rounded-none text-gray-700 w-24 h-24`} aria-labelledby="dropdownMenuButton">
+      <div key={tab.tabId} className={``} aria-labelledby="dropdownMenuButton">
           {props.tab.subMenu.map((eachItem) => (
             <button onClick={() => setSubMenu(!subMenu)} className="dropdown-item" key={eachItem.eachItemId}>
               {eachItem.icon}
@@ -34,14 +34,15 @@ function HeaderTab(props) {
 
   return (
     <Link key={tab.tabId} to={path} className="header-tab">
+    <div className='' >
     <button 
         key={tabId}
-    // onClick={() => setTabState(tabId)}
-            className={`rounded-none text-gray-700 w-24 h-24 flex flex-col justify-center items-center ${tabState === tabId ? 'bg-green-300' : 'bg-green-400'}`}
+        className={`rounded-none text-gray-700 w-20 hover:bg-green-300 rounded-full p-4 h-20 flex flex-col justify-center items-center ${tabState === tabId ? 'bg-green-300' : 'bg-green-400'}`}
            >
       {icon}
-      <p>{displayText}</p>
+      <p className='text-sm pt-1'>{displayText}</p>
     </button>
+    </div>
     </Link>
   )
 }

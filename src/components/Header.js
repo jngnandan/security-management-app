@@ -41,6 +41,8 @@ import {HiOutlineUserGroup} from 'react-icons/hi'
 
 import {FiX} from 'react-icons/fi'
 import {FiMenu} from 'react-icons/fi'
+import {AiOutlineMenu} from 'react-icons/ai'
+import {AiOutlineClose} from 'react-icons/ai'
 
 const tabsList = [
   { tabId: 'Dashboard', displayText: 'Dashboard', path: '/dashboard', icon: <FiHome size={27} /> },
@@ -69,12 +71,33 @@ function Header() {
   return (
     <div>
       {/* Seperate Column */}
-        <div className="bg-green-400 flex flex-row justify-between">
+        <div className="bg-green-400 p-1 md:flex md:flex-row md:justify-between hidden md:block">
         {tabsList.map((tab) => (
           <HeaderTab tab={tab} key={tab.tabId} />
         ))}
         </div>
+
+        <div className='bg-green-400 h-20 flex flex-row justify-end items-center md:hidden'>
+            {navbarOpen ?
+              <button className='w-20 hover:bg-green-300 rounded-full p-4 h-20 m-2 flex flex-col justify-center items-center'>
+              <AiOutlineMenu size={32} className="" onClick={() => setNavbarOpen(!navbarOpen)} />
+              </button>
+              :
+              <button className='w-20 hover:bg-green-300 rounded-full p-4 h-20 m-2 flex flex-col justify-center items-center'>
+              <AiOutlineClose size={32} className="" onClick={() => setNavbarOpen(!navbarOpen)} />
+              </button>
+            }
+        </div>
+
+        <div>
         
+        {/* {tabsList.map((tab) => {
+          if(navbarOpen) {
+            <HeaderTab tab={tab} key={tab.tabId} />
+          }}
+          )} */}
+        
+        </div>
     </div>
   )
 }
