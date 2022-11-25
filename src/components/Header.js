@@ -79,11 +79,11 @@ function Header() {
 
         <div className='bg-green-400 h-20 flex flex-row justify-end items-center md:hidden'>
             {navbarOpen ?
-              <button className='w-20 hover:bg-green-300 rounded-full p-4 h-20 m-2 flex flex-col justify-center items-center'>
+              <button className='w-20 hover:bg-green-300 rounded p-4 h-20 m-2 flex flex-col justify-center items-center'>
               <AiOutlineMenu size={32} className="" onClick={() => setNavbarOpen(!navbarOpen)} />
               </button>
               :
-              <button className='w-20 hover:bg-green-300 rounded-full p-4 h-20 m-2 flex flex-col justify-center items-center'>
+              <button className='w-20 hover:bg-green-300 rounded p-4 h-20 m-2 flex flex-col justify-center items-center'>
               <AiOutlineClose size={32} className="" onClick={() => setNavbarOpen(!navbarOpen)} />
               </button>
             }

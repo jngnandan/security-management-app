@@ -18,7 +18,8 @@ import {ContentContext} from '../../context/ContentContext'
 export default function AddClient() {
   const {user} = useContext(ContentContext)
 
-  const inputRef = useRef()
+
+  const checkInput = useRef()
 
   const [clientName, setClientName] = useState('')
   const [clientAddress, setClientAddress] = useState('')
@@ -96,11 +97,35 @@ export default function AddClient() {
     // setLoading(null)
   }
 
+  const inputRef = useRef()
+
+  const [cool, setCool] = useState('')
+  const [cooler, setCooler] = useState('')
+
+  const testSubmit = (e) => {
+    e.preventDefault()
+    // console.log(cool)
+    // console.log(cooler)
+    inputRef.current = {
+      cool: cool, 
+      cooler: cooler
+    }
+    console.log(inputRef.current) // {cool: 'cool', cooler: 'cooler'}
+
+
+  }
+
 
 
   return (
     <div className="p-4 w-screen pr-8">
       <h1 className='text-2xl text-gray-800'>Add New Client</h1>
+        <div>
+        <input type='text' placeholder='Client Name' className='w-min border border-gray-300 rounded-md p-2 mt-4' ref={inputRef} value={cool} onChange={(e)=> setCool(e.target.value)} />
+        <input type='text' placeholder='Client Name' className='w-min border border-gray-300 rounded-md p-2 mt-4' ref={inputRef} value={cooler} onChange={(e)=> setCooler(e.target.value)} />
+
+        <button className='bg-blue-500 text-white rounded-md p-2 ml-2' onClick={testSubmit} >Add Client</button>
+        </div>
       <form ref={inputRef} onSubmit={handleSubmit} className='grid grid-cols-2 gap-y-4 mt-6'>
         <div className="flex flex-col">
           <label className='font-semibold text-gray-800 text-sm pb-1' htmlFor="name">Name</label>
@@ -182,8 +207,8 @@ export default function AddClient() {
         {loading === true && 
         <button onClick={handleSubmit} className='px-7 bg-green-500 text-white px-4 py-2 rounded ml-2'>
         <Oval   strokeWidth={4}
-  strokeWidthSecondary={4}
- type="ThreeDots" color="white"   secondaryColor="white" height={21} width={21} />
+          strokeWidthSecondary={4}
+          type="ThreeDots" color="white"   secondaryColor="white" height={21} width={21} />
         </button>}
 
         {loading === null && <button onSubmit={handleSubmit} className='bg-green-500 text-white px-6 py-2 rounded ml-2'>Save</button>}
