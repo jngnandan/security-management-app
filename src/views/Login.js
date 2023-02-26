@@ -13,8 +13,8 @@ import { GoogleAuthProvider } from "firebase/auth";
 import { ContentContext } from '../context/ContentContext';
 
 export default function Login() {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
+    const [email, setEmail] = useState('girish@gmail.com')
+    const [password, setPassword] = useState('girish')
     
     const navigate = useNavigate();
     const {signIn, user, error} = useContext(ContentContext)
